@@ -16,9 +16,21 @@
   </properties>
   <dependencies>
   	<dependency>
+<<<<<<< HEAD
         <groupId>javax.enterprise</groupId>
         <artifactId>cdi-api</artifactId>
     	 <scope>provided</scope>
+=======
+        <groupId>javax.faces</groupId>
+        <artifactId>javax.faces-api</artifactId>
+        <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+        <groupId>org.primefaces</groupId>
+        <artifactId>primefaces</artifactId>
+        <version>10.0.0</version>
+>>>>>>> 03cf525 (teste)
     </dependency>
   	
   	<dependency>
@@ -66,7 +78,11 @@
    		<artifactId>cdi-api</artifactId>
    		<scope>provided</scope>
    	</dependency>
+<<<<<<< HEAD
    	
+=======
+    
+>>>>>>> 45d8072 (teste)
     <dependency>
       <groupId>org.jboss.spec.javax.servlet</groupId>
       <artifactId>jboss-servlet-api_3.0_spec</artifactId>
@@ -88,12 +104,21 @@
   </dependencies>
   <dependencyManagement>
     <dependencies>
+<<<<<<< HEAD
     <dependency>
 		<groupId>javax.faces</groupId>
 		<artifactId>javax.faces-api</artifactId>
 		<version>2.2</version>
 		<scope>provided</scope>
 	</dependency>
+=======
+	  <dependency>
+        <groupId>javax.faces</groupId>
+        <artifactId>javax.faces-api</artifactId>
+        <version>2.2</version>
+        <scope>provided</scope>
+	  </dependency>
+>>>>>>> 03cf525 (teste)
       <dependency>
         <groupId>org.jboss.spec</groupId>
         <artifactId>jboss-javaee-6.0</artifactId>

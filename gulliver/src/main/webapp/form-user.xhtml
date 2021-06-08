@@ -5,6 +5,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<<<<<<< HEAD
 	
 <h:head>
 	<h:outputStylesheet library="css" name="global.css"></h:outputStylesheet>
@@ -12,6 +13,12 @@
 </h:head>
 
 <h:body>
+=======
+
+<h:body>
+		<ui:define name="content">
+		<p:messages id="messages"><p:autoUpdate /></p:messages>
+>>>>>>> 45d8072 (teste)
 			<h:form>
 				<p:card class="card-form">
 					<f:facet name="title">New User</f:facet>
@@ -23,7 +30,11 @@
 						</p:inputText>
 						
 						<p:outputLabel for="phone" value="Phone"/>
+<<<<<<< HEAD
             			<p:inputMask id="phone" value="#{userBean.user.phoneNumber}" mask="99999999999" validateMask="true"/>
+=======
+            			<p:inputMask id="phone" value="#{userBean.user.phoneNumber}" mask="(99)99999-9999" validateMask="true"/>
+>>>>>>> 45d8072 (teste)
 						
 						<p:outputLabel value="Email" for="email" />
 						<p:inputText id="email" value="#{userBean.user.email}" required="true">
@@ -48,5 +59,9 @@
 					</f:facet>
 				</p:card>
 			</h:form>
+<<<<<<< HEAD
+=======
+		</ui:define>
+>>>>>>> 45d8072 (teste)
 </h:body>
 </html>

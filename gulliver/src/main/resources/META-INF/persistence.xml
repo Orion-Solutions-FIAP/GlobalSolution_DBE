@@ -15,12 +15,16 @@
               value="oracle.jdbc.OracleDriver" />
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 45d8072 (teste)
       <property name="javax.persistence.jdbc.user" value="RM86394" />
       <property name="javax.persistence.jdbc.password"
           value="270802" />
       <property name="javax.persistence.jdbc.url"
           value="jdbc:oracle:thin:@oracle.fiap.com.br:1521:orcl" />
     
+<<<<<<< HEAD
       <property name="hibernate.hbm2ddl.auto" value="update"/>
       <property name="hibernate.show_sql" value="true"/>
 =======
@@ -40,6 +44,10 @@
       <property name="hibernate.hbm2ddl.auto" value="create"/>
       <property name="hibernate.show_sql" value="false"/>
 >>>>>>> 2b456eb (Index atualizado)
+=======
+      <property name="hibernate.hbm2ddl.auto" value="create"/>
+      <property name="hibernate.show_sql" value="false"/>
+>>>>>>> 45d8072 (teste)
       <property name="hibernate.format_sql" value="true"/>
     </properties>
   </persistence-unit>

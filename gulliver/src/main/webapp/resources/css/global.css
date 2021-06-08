@@ -1,7 +1,16 @@
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+>>>>>>> 45d8072 (teste)
 @charset "UTF-8";
 
 body{
+=======
+@charset "ISO-8859-1";
+
+body {
+>>>>>>> 03cf525 (teste)
 	background: #eee;
 }
 
@@ -10,20 +19,35 @@ body{
 	margin: 10px auto;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 03cf525 (teste)
 button.cancel-button{
 	margin-left: .5em;
 }
 
+<<<<<<< HEAD
 .setup-list-item{
 	display: -ms-flexbox;
 	display: flex;
 	-ms-flex-align: center;
 	align-items: center;
 	padding: 1rem;
+=======
+
+.setup-list-item{
+	display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 1rem;
+>>>>>>> 03cf525 (teste)
 }
 
 .setup-list-detail{
 	flex: 1 1 0;
+<<<<<<< HEAD
 	-ms-flex:1 1 0;
 }
 
@@ -37,21 +61,79 @@ button.cancel-button{
 }
 
 .product .setup-list-item .setup-list-action {
+=======
+    -ms-flex: 1 1 0;
+}
+
+.setup-list-item img {
+    width: 150px;
+    box-shadow: 0 3px 6px rgb(0 0 0 / 16%), 0 3px 6px rgb(0 0 0 / 23%);
+    margin-right: 2rem;
+}
+
+.setup-list-action {
+>>>>>>> 03cf525 (teste)
     display: -ms-flexbox;
     display: flex;
     -ms-flex-direction: column;
     flex-direction: column;
 }
 
+<<<<<<< HEAD
 .product .setup-list-item .setup-price {
+=======
+.setup-description {
+    margin: 0 0 1rem 0;
+}
+
+.setup-price {
+>>>>>>> 03cf525 (teste)
     font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: .5rem;
     align-self: flex-end;
 }
 
+<<<<<<< HEAD
 .product .setup-list-item img {
     width: 150px;
     box-shadow: 0 3px 6px rgb(0 0 0 / 16%), 0 3px 6px rgb(0 0 0 / 23%);
     margin-right: 2rem;
 }
+=======
+.setup-name {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.setup-grid-item.border-1 {
+    border: 1px solid var(--surface-d);
+}
+.setup-grid-item-content {
+    text-align: center;
+}
+.setup-grid-item-bottom {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+.setup-grid-item img {
+    width: 75%;
+    box-shadow: 0 3px 6px rgb(0 0 0 / 16%), 0 3px 6px rgb(0 0 0 / 23%);
+    margin: 2rem 0;
+}
+
+.card {
+    background: var(--surface-e);
+    padding: 2rem;
+    box-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%), 0 1px 3px 0 rgb(0 0 0 / 12%);
+    border-radius: 4px;
+    margin-bottom: 2rem;
+}
+
+
+>>>>>>> 03cf525 (teste)
