@@ -13,7 +13,7 @@
 
 		<div class="card">
 		    <h:form>
-		        <p:dataTable var="product" value="#{dtBasicView.products}">
+		        <p:dataTable var="rentalCompany" value="#{rentalCompanyBean.rentalCompanies}">
 		            <f:facet name="header">
 		                Locadoras
 		            </f:facet>
@@ -22,44 +22,33 @@
 		            </p:column>
 		
 		            <p:column headerText="Nome">
-		                <h:outputText value="#{rentalCompanyBean.name}"/>
+		                <h:outputText value="#{rentalCompany.name}"/>
 		            </p:column>
 		
 		            <p:column headerText="Image">
-		                <p:graphicImage name="demo/images/product/#{rentalCompanyBean.url}" styleClass="p-shadow-2" width="100"/>
+		                <p:graphicImage name="demo/images/product/#{rentalCompany.url}" styleClass="p-shadow-2" width="100"/>
 		            </p:column>
 		
-		            <p:column headerText="Category">
-		                <h:outputText value="#{product.category}"/>
+		            <p:column headerText="Descricao">
+		                <h:outputText value="#{rentalCompany.description}"/>
 		            </p:column>
 		
-		            <p:column headerText="Reviews">
-		                <h:outputText value="#{product.name}"/>
-		            </p:column>
-		
-		            <p:column headerText="Status">
-		                <h:outputText value="#{product.inventoryStatus}"/>
+		            <p:column headerText="Avaliacao">
+		                <p:rating readonly="true" value="#{rentalCompany.rating.grade}"/>
 		            </p:column>
 		
 		            <p:rowExpansion>
 		                <div class="product">
 		                    <div class="product-list-item">
-		                        <p:graphicImage name="demo/images/product/#{product.image}"/>
+		                        <p:graphicImage name="demo/images/product/#{rentalCompany.url}"/>
 		                        <div class="product-list-detail">
-		                            <div class="product-name">#{product.name}</div>
-		                            <div class="product-description">#{product.description}</div>
-		                            <p:rating readonly="true" value="#{product.rating}"/>
-		                            <i class="pi pi-tag product-category-icon"/><span
-		                                class="product-category">#{product.category}</span>
+		                            <div class="product-name">#{rentalCompany.name}</div>
+		                            <div class="product-description">#{rentalCompany.description}</div>
+		                            <p:rating readonly="true" value="#{rentalCompany.rating.grade}"/>
 		                        </div>
+		                        
 		                        <div class="product-list-action">
-		                            <h:outputText value="#{product.price}" styleClass="product-price">
-		                                <f:convertNumber currencySymbol="$" type="currency"/>
-		                            </h:outputText>
-		                            <p:commandButton value="Add To Cart" icon="pi pi-shopping-cart" type="button"
-		                                             disabled="#{product.inventoryStatus == 'OUTOFSTOCK'}">
-		                            </p:commandButton>
-		                            <span class="product-badge status-#{product.inventoryStatus.name().toLowerCase()}">#{product.inventoryStatus.text}</span>
+		                            <p:commandButton value="Avaliar" type="button"></p:commandButton>
 		                        </div>
 		                    </div>
 		                </div>
