@@ -15,6 +15,11 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <dependencies>
+<<<<<<< HEAD
+=======
+   	
+   	<!-- JSF -->
+>>>>>>> dcfe819 (cadastro pronto)
   	<dependency>
 <<<<<<< HEAD
         <groupId>javax.enterprise</groupId>
@@ -26,12 +31,14 @@
         <scope>provided</scope>
     </dependency>
 
+	<!-- Primefaces -->
     <dependency>
         <groupId>org.primefaces</groupId>
         <artifactId>primefaces</artifactId>
         <version>10.0.0</version>
 >>>>>>> 03cf525 (teste)
     </dependency>
+<<<<<<< HEAD
   	
   	<dependency>
 		<groupId>javax.faces</groupId>
@@ -62,6 +69,13 @@
 	    <artifactId>javax.persistence-api</artifactId>
 	    <version>2.2</version>
 	</dependency>
+<<<<<<< HEAD
+=======
+  
+=======
+  		
+>>>>>>> 6202c6f (cadastro pronto)
+>>>>>>> dcfe819 (cadastro pronto)
     <dependency>
       <groupId>org.hibernate.javax.persistence</groupId>
       <artifactId>hibernate-jpa-2.0-api</artifactId>
@@ -79,10 +93,14 @@
    		<scope>provided</scope>
    	</dependency>
 <<<<<<< HEAD
+<<<<<<< HEAD
    	
 =======
     
 >>>>>>> 45d8072 (teste)
+=======
+   	
+>>>>>>> dcfe819 (cadastro pronto)
     <dependency>
       <groupId>org.jboss.spec.javax.servlet</groupId>
       <artifactId>jboss-servlet-api_3.0_spec</artifactId>
@@ -105,6 +123,7 @@
   <dependencyManagement>
     <dependencies>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <dependency>
 		<groupId>javax.faces</groupId>
 		<artifactId>javax.faces-api</artifactId>
@@ -119,6 +138,8 @@
         <scope>provided</scope>
 	  </dependency>
 >>>>>>> 03cf525 (teste)
+=======
+>>>>>>> 6202c6f (cadastro pronto)
       <dependency>
         <groupId>org.jboss.spec</groupId>
         <artifactId>jboss-javaee-6.0</artifactId>
@@ -139,12 +160,22 @@
         <artifactId>ojdbc8</artifactId>
         <version>21.1.0.0</version>
       </dependency>
+<<<<<<< HEAD
       <dependency>
           <groupId>javax.enterprise</groupId>
+=======
+      
+      <dependency>
+      	<groupId>javax.enterprise</groupId>
+>>>>>>> 6202c6f (cadastro pronto)
         <artifactId>cdi-api</artifactId>
         <version>1.1</version>
         <scope>provided</scope>
       </dependency>
+<<<<<<< HEAD
+=======
+      
+>>>>>>> 6202c6f (cadastro pronto)
     </dependencies>
   </dependencyManagement>
 </project>

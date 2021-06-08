@@ -25,6 +25,7 @@
           value="jdbc:oracle:thin:@oracle.fiap.com.br:1521:orcl" />
     
 <<<<<<< HEAD
+<<<<<<< HEAD
       <property name="hibernate.hbm2ddl.auto" value="update"/>
       <property name="hibernate.show_sql" value="true"/>
 =======
@@ -48,6 +49,10 @@
       <property name="hibernate.hbm2ddl.auto" value="create"/>
       <property name="hibernate.show_sql" value="false"/>
 >>>>>>> 45d8072 (teste)
+=======
+      <property name="hibernate.hbm2ddl.auto" value="update"/>
+      <property name="hibernate.show_sql" value="true"/>
+>>>>>>> dcfe819 (cadastro pronto)
       <property name="hibernate.format_sql" value="true"/>
     </properties>
   </persistence-unit>

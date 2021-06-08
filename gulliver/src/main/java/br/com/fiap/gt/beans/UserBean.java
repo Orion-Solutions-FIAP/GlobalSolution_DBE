@@ -28,6 +28,7 @@ public class UserBean {
 	
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	EntityManager em = EntityManagerFactorySingleton.getInstance().createEntityManager(); 
 
 	private User user = new User();
@@ -40,6 +41,8 @@ public class UserBean {
 =======
 =======
 >>>>>>> 45d8072 (teste)
+=======
+>>>>>>> dcfe819 (cadastro pronto)
 	EntityManager em = EntityManagerFactorySingleton.getInstance().createEntityManager();
 	private User user = new User();
 	
@@ -60,11 +63,14 @@ public class UserBean {
 =======
 =======
 	private EntityManager em = EntityManagerFactorySingleton.getInstance().createEntityManager(); 
+=======
+	EntityManager em = EntityManagerFactorySingleton.getInstance().createEntityManager(); 
+>>>>>>> 6202c6f (cadastro pronto)
 
 	private User user = new User();
 	
 	public String save() {
-		UserDao uDao = new UserDaoImpl(em);
+		UserDaoImpl uDao = new UserDaoImpl(em);
 		uDao.create(this.user);
 		this.user = new User();
 		return "index?faces-redirect=true";
