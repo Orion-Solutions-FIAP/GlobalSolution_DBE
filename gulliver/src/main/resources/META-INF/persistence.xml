@@ -5,7 +5,6 @@
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <class>br.com.fiap.gt.model.Car</class>
     <class>br.com.fiap.gt.model.Rating</class>
-    <class>br.com.fiap.gt.model.RatingPK</class>
     <class>br.com.fiap.gt.model.RentalCompany</class>
     <class>br.com.fiap.gt.model.Schedule</class>
     <class>br.com.fiap.gt.model.User</class>
