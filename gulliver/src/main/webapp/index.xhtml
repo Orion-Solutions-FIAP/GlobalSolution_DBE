@@ -11,7 +11,63 @@
 
 	<ui:define name="content">
 
-		<h1>TESTE</h1>
+		<div class="card">
+		    <h:form>
+		        <p:dataTable var="product" value="#{dtBasicView.products}">
+		            <f:facet name="header">
+		                Locadoras
+		            </f:facet>
+		            <p:column style="width:2rem">
+		                <p:rowToggler/>
+		            </p:column>
+		
+		            <p:column headerText="Nome">
+		                <h:outputText value="#{rentalCompanyBean.name}"/>
+		            </p:column>
+		
+		            <p:column headerText="Image">
+		                <p:graphicImage name="demo/images/product/#{rentalCompanyBean.url}" styleClass="p-shadow-2" width="100"/>
+		            </p:column>
+		
+		            <p:column headerText="Category">
+		                <h:outputText value="#{product.category}"/>
+		            </p:column>
+		
+		            <p:column headerText="Reviews">
+		                <h:outputText value="#{product.name}"/>
+		            </p:column>
+		
+		            <p:column headerText="Status">
+		                <h:outputText value="#{product.inventoryStatus}"/>
+		            </p:column>
+		
+		            <p:rowExpansion>
+		                <div class="product">
+		                    <div class="product-list-item">
+		                        <p:graphicImage name="demo/images/product/#{product.image}"/>
+		                        <div class="product-list-detail">
+		                            <div class="product-name">#{product.name}</div>
+		                            <div class="product-description">#{product.description}</div>
+		                            <p:rating readonly="true" value="#{product.rating}"/>
+		                            <i class="pi pi-tag product-category-icon"/><span
+		                                class="product-category">#{product.category}</span>
+		                        </div>
+		                        <div class="product-list-action">
+		                            <h:outputText value="#{product.price}" styleClass="product-price">
+		                                <f:convertNumber currencySymbol="$" type="currency"/>
+		                            </h:outputText>
+		                            <p:commandButton value="Add To Cart" icon="pi pi-shopping-cart" type="button"
+		                                             disabled="#{product.inventoryStatus == 'OUTOFSTOCK'}">
+		                            </p:commandButton>
+		                            <span class="product-badge status-#{product.inventoryStatus.name().toLowerCase()}">#{product.inventoryStatus.text}</span>
+		                        </div>
+		                    </div>
+		                </div>
+		            </p:rowExpansion>
+		            
+		        </p:dataTable>
+		    </h:form>
+		</div>
 
 	</ui:define>
 
