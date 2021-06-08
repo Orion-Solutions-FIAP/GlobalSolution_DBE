@@ -2,6 +2,7 @@ package br.com.fiap.gt.model;
 
 import java.util.List;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -38,7 +39,8 @@ public class User {
 	@Column(name = "nr_phone", nullable = false, length = 11)
 	private String phoneNumber;
 
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JsonbTransient
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Rating> ratings;
 
 	public User() {

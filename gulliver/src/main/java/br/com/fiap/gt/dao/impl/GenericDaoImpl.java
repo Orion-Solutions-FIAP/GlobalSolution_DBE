@@ -1,8 +1,11 @@
 package br.com.fiap.gt.dao.impl;
 
 import java.lang.reflect.ParameterizedType;
+import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
 
 import br.com.fiap.gt.dao.GenericDao;
 import br.com.fiap.gt.exception.CommitException;
@@ -56,4 +59,11 @@ public abstract class GenericDaoImpl<E, K> implements GenericDao<E, K> {
 		}
 	}
 
+	@Override
+	public List<E> getList() {
+		CriteriaBuilder builder = em.getCriteriaBuilder();
+		CriteriaQuery<E> query = builder.createQuery(clazz);
+		query.from(clazz);
+		return em.createQuery(query).getResultList();
+	}
 }
