@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+	  xmlns:f="http://java.sun.com/jsf/core">
+	
+	<h:head>
+	  	<title><ui:insert name="title">Progamer</ui:insert></title>
+	  	<h:outputStylesheet library="css" name="global.css"></h:outputStylesheet>
+	</h:head>
+	
+	<h:body>
+		<ui:composition template="_template.xhtml">
+			<ui:define name="menu"></ui:define>
+			<ui:define name="content">
+		
+				<h:form>
+					<p:card class="card-form">
+						<f:facet name="title" >Login</f:facet>
+		
+						<h:panelGrid columns="3">
+	 
+							<p:outputLabel value="Email" for="email" />
+							<p:inputText id="email" value="#{userBean.user.email}" required="true" requiredMessage="Email: Erro de validação, padrão não corresponde a um email">
+								<f:validateRegex pattern="([^.@]+)(\.[^.@]+)*@([^.@]+\.)+([^.@]+)" />
+								<f:ajax event="blur" render="message-email"/>
+							</p:inputText>	
+							<p:message for="email" id="message-email"></p:message>
+							
+							<p:outputLabel value="Password" for="password"/>
+							<p:password id="password" value="#{userBean.user.password}" toggleMask="true" required="true">
+								<f:validateLength minimum="6" maximum="101"/>
+								<f:ajax event="blur" render="message-password"/>
+							</p:password>
+							<p:message for="password" id="message-password"></p:message>
+							
+						</h:panelGrid>
+		
+						<f:facet name="footer">
+							<p:messages id="messages"/>
+							<p:commandButton icon="pi pi-check" value="Login" action="#{userBean.login}">
+								<f:ajax execute="@form" render="form-users"/>
+							</p:commandButton>
+						</f:facet>
+					</p:card>
+				</h:form>
+			
+			</ui:define>
+		</ui:composition>
+		
+	</h:body>
+</html>
