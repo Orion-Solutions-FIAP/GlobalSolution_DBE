@@ -15,21 +15,35 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <dependencies>
-   	
-   	<!-- JSF -->
   	<dependency>
-        <groupId>javax.faces</groupId>
-        <artifactId>javax.faces-api</artifactId>
-        <scope>provided</scope>
+        <groupId>javax.enterprise</groupId>
+        <artifactId>cdi-api</artifactId>
+    	 <scope>provided</scope>
     </dependency>
+  	
+  	<dependency>
+		<groupId>javax.faces</groupId>
+		<artifactId>javax.faces-api</artifactId>
+		<scope>provided</scope>
+	</dependency>
 
-	<!-- Primefaces -->
-    <dependency>
-        <groupId>org.primefaces</groupId>
-        <artifactId>primefaces</artifactId>
-        <version>10.0.0</version>
-    </dependency>
-  		
+	<dependency>
+		<groupId>org.primefaces</groupId>
+		<artifactId>primefaces</artifactId>
+		<version>10.0.0</version>
+	</dependency>
+ 	
+  	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-core</artifactId>
+		<version>5.4.12.Final</version>
+	</dependency>
+	
+	<dependency>
+	    <groupId>javax.persistence</groupId>
+	    <artifactId>javax.persistence-api</artifactId>
+	    <version>2.2</version>
+	</dependency>
     <dependency>
       <groupId>org.hibernate.javax.persistence</groupId>
       <artifactId>hibernate-jpa-2.0-api</artifactId>
@@ -57,11 +71,23 @@
       <groupId>org.jboss.spec.javax.ws.rs</groupId>
       <artifactId>jboss-jaxrs-api_1.1_spec</artifactId>
       <scope>provided</scope>
+    
+    </dependency>
+        <dependency>
+        <groupId>javax.json.bind</groupId>
+        <artifactId>javax.json.bind-api</artifactId>
+        <version>1.0.0-RC2</version>
     </dependency>
     
   </dependencies>
   <dependencyManagement>
     <dependencies>
+    <dependency>
+		<groupId>javax.faces</groupId>
+		<artifactId>javax.faces-api</artifactId>
+		<version>2.2</version>
+		<scope>provided</scope>
+	</dependency>
       <dependency>
         <groupId>org.jboss.spec</groupId>
         <artifactId>jboss-javaee-6.0</artifactId>
@@ -82,14 +108,12 @@
         <artifactId>ojdbc8</artifactId>
         <version>21.1.0.0</version>
       </dependency>
-      
       <dependency>
-      	<groupId>javax.enterprise</groupId>
+          <groupId>javax.enterprise</groupId>
         <artifactId>cdi-api</artifactId>
         <version>1.1</version>
         <scope>provided</scope>
       </dependency>
-      
     </dependencies>
   </dependencyManagement>
 </project>
