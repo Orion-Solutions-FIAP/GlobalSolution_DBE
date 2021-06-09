@@ -13,9 +13,9 @@
     
 	<property name="javax.persistence.jdbc.driver"
               value="oracle.jdbc.OracleDriver" />
-      <property name="javax.persistence.jdbc.user" value="RM86394" />
+      <property name="javax.persistence.jdbc.user" value="rm84310" />
       <property name="javax.persistence.jdbc.password"
-          value="270802" />
+          value="271193" />
       <property name="javax.persistence.jdbc.url"
           value="jdbc:oracle:thin:@oracle.fiap.com.br:1521:orcl" />
     
