@@ -16,6 +16,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @NamedQuery(name = "Schedule.FindByRentalCompany", query = "SELECT new br.com.fiap.gt.model.Schedule(s.day, s.openingHour, s.closingHour) "
 		+ "FROM Schedule s WHERE s.rentalCompany = :rc")
 
@@ -29,6 +31,7 @@ public class Schedule {
 	@GeneratedValue(generator = "schedule", strategy = GenerationType.SEQUENCE)
 	private int id;
 
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "id_rental_comp", nullable = false)
 	private RentalCompany rentalCompany;

@@ -13,12 +13,13 @@ import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @IdClass(RatingPK.class)
 
 @NamedQueries({
-	@NamedQuery(name = "Rating.CountByRentalCompany", query = "SELECT COUNT(r.id) FROM Rating r WHERE r.rentalCompany = :rc"),
-	@NamedQuery(name = "Rating.FindByUser", query = "SELECT r FROM Rating r WHERE r.user = :u") 
-})
+		@NamedQuery(name = "Rating.CountByRentalCompany", query = "SELECT COUNT(r.id) FROM Rating r WHERE r.rentalCompany = :rc"),
+		@NamedQuery(name = "Rating.FindByUser", query = "SELECT r FROM Rating r WHERE r.user = :u") })
 
 @Entity
 @Table(name = "T_GT_RATING")
@@ -30,11 +31,13 @@ public class Rating {
 	@GeneratedValue(generator = "rating", strategy = GenerationType.SEQUENCE)
 	private int id;
 
+	@JsonBackReference
 	@Id
 	@ManyToOne
 	@JoinColumn(name = "id_rental_comp")
 	private RentalCompany rentalCompany;
 
+	@JsonBackReference(value="user")
 	@Id
 	@ManyToOne
 	@JoinColumn(name = "id_user")

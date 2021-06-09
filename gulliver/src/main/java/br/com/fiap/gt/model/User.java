@@ -15,6 +15,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @NamedQuery(name = "User.FindByEmail", query = "SELECT new br.com.fiap.gt.model.User(u.id, u.name, u.email, u.phoneNumber) FROM User u WHERE LOWER(u.email) = :e")
 
 @Entity
@@ -39,7 +43,8 @@ public class User {
 	@Column(name = "nr_phone", nullable = false, length = 11)
 	private String phoneNumber;
 
-	@JsonbTransient
+	@JsonManagedReference(value="user")
+	@JsonInclude(value = Include.NON_NULL)
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Rating> ratings;
 

@@ -13,6 +13,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @NamedQuery(name = "Car.FindByBrandAndIsActive", query = "SELECT c FROM Car c WHERE LOWER(c.brand) LIKE :b AND c.isActive = :is")
 
 @Entity
@@ -25,6 +27,7 @@ public class Car {
 	@GeneratedValue(generator = "car", strategy = GenerationType.SEQUENCE)
 	private int id;
 
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "id_rental_comp", nullable = false)
 	private RentalCompany rentalCompany;

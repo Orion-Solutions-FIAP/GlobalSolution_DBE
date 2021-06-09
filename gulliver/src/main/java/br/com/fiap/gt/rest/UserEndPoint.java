@@ -59,6 +59,7 @@ public class UserEndPoint {
 			user = userDao.search(id);
 			userDao.update(user);
 			userDao.commit();
+			user.setRatings(null);;
 			return Response.status(Response.Status.OK).entity(user).build();
 		} catch (EntityNotFoundException e) {
 			return Response.status(Response.Status.NOT_FOUND).build();
