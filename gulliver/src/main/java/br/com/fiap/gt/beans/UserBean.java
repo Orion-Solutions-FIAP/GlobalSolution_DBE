@@ -30,13 +30,6 @@ public class UserBean {
 			return "login?faces-redirect=true";
 		}
 	}
-	
-	public String save() {
-		UserDaoImpl uDao = new UserDaoImpl(em);
-		uDao.create(this.user);
-		this.user = new User();
-		return "index?faces-redirect=true";
-	}
 
 	public User getUser() {
 		return user;
@@ -46,6 +39,11 @@ public class UserBean {
 		this.user = user;
 	}
 	
-	
+	public String save() {
+		UserDaoImpl uDao = new UserDaoImpl(em);
+		uDao.create(this.user);
+		this.user = new User();
+		return "index?faces-redirect=true";
+	}
 	
 }

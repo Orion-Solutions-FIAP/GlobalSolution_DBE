@@ -17,7 +17,7 @@ public class UserDaoImpl extends GenericDaoImpl<User, Integer> implements UserDa
 		return em.createNamedQuery("User.FindByEmail", User.class)
 		.setParameter("e", email.toLowerCase()).getSingleResult();
 	}
-
+	
 	@Override
 	public User exists(User user) {
 		TypedQuery<User> query = em.createQuery("SELECT u FROM User u WHERE email = :email AND password = :password", User.class)
@@ -32,4 +32,5 @@ public class UserDaoImpl extends GenericDaoImpl<User, Integer> implements UserDa
 		} 
 		
 	}
+	
 }
