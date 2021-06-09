@@ -74,43 +74,24 @@
     
     </dependency>
     
-  <!-- JSON-P API -->
-    <dependency>
-        <groupId>javax.json</groupId>
-        <artifactId>javax.json-api</artifactId>
-        <version>1.1</version>
-    </dependency>
-
-    <!-- JSON-P RI -->
-    <dependency>
-        <groupId>org.glassfish</groupId>
-        <artifactId>javax.json</artifactId>
-        <version>1.1</version>
-        <scope>runtime</scope>
-    </dependency>
-
-    <!-- JSON-B API -->
-    <dependency>
-        <groupId>javax.json.bind</groupId>
-        <artifactId>javax.json.bind-api</artifactId>
-        <version>1.0.0-RC2</version>
-    </dependency>
-
-	<!-- Yasson (JSON-B RI) -->
-    <dependency>
-        <groupId>org.eclipse</groupId>
-        <artifactId>yasson</artifactId>
-        <version>1.0.0-RC1</version>
-        <scope>runtime</scope>
-    </dependency>
-    
     <dependency>
 	    <groupId>com.fasterxml.jackson.core</groupId>
 	    <artifactId>jackson-annotations</artifactId>
 	    <version>2.12.3</version>
 	</dependency>
-	    
-    
+
+	<dependency>
+	    <groupId>com.fasterxml.jackson.core</groupId>
+	    <artifactId>jackson-databind</artifactId>
+	    <version>2.12.3</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>com.fasterxml.jackson.datatype</groupId>
+	    <artifactId>jackson-datatype-jsr310</artifactId>
+	    <version>2.12.3</version>
+	</dependency>
+	
   </dependencies>
   <dependencyManagement>
     <dependencies>

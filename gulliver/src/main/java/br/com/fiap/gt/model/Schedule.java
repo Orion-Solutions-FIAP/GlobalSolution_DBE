@@ -17,6 +17,11 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
 
 @NamedQuery(name = "Schedule.FindByRentalCompany", query = "SELECT new br.com.fiap.gt.model.Schedule(s.day, s.openingHour, s.closingHour) "
 		+ "FROM Schedule s WHERE s.rentalCompany = :rc")
@@ -40,9 +45,15 @@ public class Schedule {
 	@Column(name = "ds_day", nullable = false, length = 60)
 	private Day day;
 
+	@JsonSerialize(using = LocalTimeSerializer.class)
+	@JsonDeserialize(using = LocalTimeDeserializer.class)
+	@JsonFormat(pattern = "HH:mm")
 	@Column(name = "hr_opening")
 	private LocalTime openingHour;
-
+	
+	@JsonSerialize(using = LocalTimeSerializer.class)
+	@JsonDeserialize(using = LocalTimeDeserializer.class)
+	@JsonFormat(pattern = "HH:mm")
 	@Column(name = "hr_closing")
 	private LocalTime closingHour;
 
