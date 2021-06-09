@@ -14,7 +14,7 @@ import br.com.fiap.gt.singleton.EntityManagerFactorySingleton;
 @RequestScoped
 public class UserBean {
 	
-	EntityManager em = EntityManagerFactorySingleton.getInstance().createEntityManager(); 
+	EntityManager em = EntityManagerFactorySingleton.getInstance().createEntityManager();
 
 	private User user = new User();
 	
