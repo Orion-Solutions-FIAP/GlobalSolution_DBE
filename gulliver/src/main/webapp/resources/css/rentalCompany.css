@@ -6,33 +6,37 @@
 body, body{
 	height: 100vh;
 	margin: 0;
-	
 }
 
 .layout{
+	position: relative;
 	height: 100vh;
 	width: 100%;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;	
-	 background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://i.pinimg.com/originals/43/55/07/43550712c75f68b0f4cc6ab970189ead.png");
+	 background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url("https://i.pinimg.com/originals/be/b9/58/beb958e56b3cb2ce745e880c9d482e04.jpg");
  	background-repeat: no-repeat;
   	background-size: cover;
 }
 
 
 .imageLogo{
+	top: 2%;
+	left: 0%;
+	border-color: white;
+	border-style: solid;
+	border-left: 0;
+	position: absolute;
 	margin-bottom: 4em;
-	border-radius: 50%;
-	width: 20vw;
-	height: 20vh
+	width: 14vw;
+	height: 14vh
+	
 }
 
-
-.map{
-}
 
 .images{
+	justify-content: center;
 	align-items: center;
 	align-self: center;
 	display: flex;
@@ -45,7 +49,7 @@ body, body{
 	align-items: center;
 	align-self: center;
 	color: #FFFFFF;
-	max-width: 30%;
+	max-width: 35%;
 	height: auto;
 	padding: 4em;
 }
@@ -53,7 +57,7 @@ body, body{
 .description{
 	font-family: 'Josefin Slab', serif;
 	text-indent: 2em;
-	font-size: 20pt;
+	font-size: 24pt;
 	text-align: justify;
 }
 
@@ -67,5 +71,21 @@ body, body{
 	font-family: 'Josefin Slab', serif;
 	font-family: 'Permanent Marker', cursive;
 	font-family: 'Righteous', cursive;
-	font-size:50pt;
+	font-size:65pt;
 }
+
+.underline{
+  background-image: linear-gradient(120deg, #304771 6%, #192824 100%);
+  background-repeat: no-repeat;
+  background-size: 100% 0.2em;
+  background-position: 0 88%;
+  transition: background-size 0.25s ease-in;
+}
+
+.underline:hover{
+	 background-size: 100% 88%;
+ }
+ 
+ 
+ 
+ 

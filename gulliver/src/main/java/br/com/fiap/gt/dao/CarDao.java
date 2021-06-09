@@ -8,4 +8,7 @@ public interface CarDao extends GenericDao<Car, Integer> {
 
 	//Buscar carros por Marca e se est� ativo ou n�o.
 	List<Car> findByBrandAndIsActive(String brand, boolean isActive);
+	
+	//Buscar carros por locadora
+	List<Car> findByRentalCompany(int id);
 }

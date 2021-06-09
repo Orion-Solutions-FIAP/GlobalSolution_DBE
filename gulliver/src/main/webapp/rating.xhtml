@@ -9,7 +9,6 @@
 	<head>
 	  	<title><ui:insert name="title">Gulliver</ui:insert></title>
 	  	<h:outputStylesheet library="css" name="global.css"></h:outputStylesheet>
-	  	<h:outputStylesheet library="css" name="rentalCompany.css"/>
 	</head>
 	
 	<h:body>
@@ -17,15 +16,42 @@
 		<ui:composition template="_template.xhtml">
 			<ui:define name="content">
 				<div class="layout">
-					<div class="images">
-			    		<p:graphicImage url="https://upload.wikimedia.org/wikipedia/pt/c/c8/Logotipo_da_Localiza_em_2014.png" styleClass="p-shadow-2 imageLogo" width="700"/>
-				    	<p:gmap styleClass="map" center="-22.92644250633006, -45.463105781713104" zoom="18" type="HYBRID" style="width:700px;height:400px"/>
-					</div>
 					<div class="info">
-	    				<h1 class="text">Localiza</h1>
+	    				<h1 class="text underline">Localiza</h1>
 	    				<h:outputText styleClass="description" value="Localiza Rent a Car, conhecida apenas como Localiza, é uma rede brasileira de lojas especializadas em aluguel de carros
 	    				, atuante nas principais cidades e aeroportos do Brasil e também em diversos países da América Latina, como Argentina, Paraguai, Colômbia, e Equador."/>
     					<h:link styleClass="link" value="https://www.localiza.com/brasil/pt-br"/>
+					</div>
+		    		<p:graphicImage url="https://upload.wikimedia.org/wikipedia/pt/c/c8/Logotipo_da_Localiza_em_2014.png" styleClass="p-shadow-2 imageLogo" width="700"/>
+					<div class="images">
+				    	<p:gmap styleClass="map" center="-22.92644250633006, -45.463105781713104" zoom="18" type="HYBRID" style="width:650px;height:350px"/>
+					</div>
+				</div>
+				
+				
+				<div>
+					<div class="card" id="card-setup-list"> 
+						<h:form id="form-setups">
+							<p:dataTable 
+								var="car"
+								value="#{rentalCompanyBean.carsFromRentalCompany}">
+								<f:facet  name="header">
+				                	Lista de carros da locadora
+				            	</f:facet>
+								<p:column headerText="Modelo">
+					                <h:outputText value="#{car.model}" />
+					            </p:column>
+					            <p:column headerText="Marca">
+					                <h:outputText value="#{car.brand}" />
+					            </p:column>
+					            <p:column headerText="Custo diário">
+					                <h:outputText value="#{car.dailyValue}" />
+					            </p:column>
+					            <p:column headerText="Disponibilidade">
+					                <h:outputText value="#{car.active ? 'Disponivel' : 'Indisponível'}" />
+					            </p:column>
+							</p:dataTable>
+						</h:form> 
 					</div>
 				</div>
 
@@ -54,7 +80,7 @@
 			
 							<f:facet name="footer">
 								<p:messages id="messages"/>
-								<p:commandButton icon="pi pi-check" value="Login" action="#{ratingBean.rate}">
+								<p:commandButton icon="pi pi-check" value="Cadastrar Avaliação" action="#{ratingBean.rate}" onclick="PF('modal').hide();$('#form').trigger('reset');">
 									<f:ajax execute="@form" render="form-users"/>
 								</p:commandButton>
 							</f:facet>
