@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Slab:ital,wght@1,600&family=Permanent+Marker&family=Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Slab&display=swap');
+@charset "UTF-8";
+
+body, body{
+	height: 100vh;
+	margin: 0;
+	
+}
+
+.layout{
+	height: 100vh;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;	
+	 background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://i.pinimg.com/originals/43/55/07/43550712c75f68b0f4cc6ab970189ead.png");
+ 	background-repeat: no-repeat;
+  	background-size: cover;
+}
+
+
+.imageLogo{
+	margin-bottom: 4em;
+	border-radius: 50%;
+	width: 20vw;
+	height: 20vh
+}
+
+
+.map{
+}
+
+.images{
+	align-items: center;
+	align-self: center;
+	display: flex;
+	flex-direction: column;
+}
+
+.info{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	align-self: center;
+	color: #FFFFFF;
+	max-width: 30%;
+	height: auto;
+	padding: 4em;
+}
+
+.description{
+	font-family: 'Josefin Slab', serif;
+	text-indent: 2em;
+	font-size: 20pt;
+	text-align: justify;
+}
+
+.link{
+	color: blue;
+	text-decoration: none;
+	font-size: 15pt;
+}
+
+.text{
+	font-family: 'Josefin Slab', serif;
+	font-family: 'Permanent Marker', cursive;
+	font-family: 'Righteous', cursive;
+	font-size:50pt;
+}
