@@ -2,7 +2,6 @@ package br.com.fiap.gt.model;
 
 import java.util.List;
 
-import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;

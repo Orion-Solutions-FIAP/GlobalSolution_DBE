@@ -3,7 +3,6 @@ package br.com.fiap.gt.model;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,7 +14,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @NamedQuery(name = "RentalCompany.FindByName", query = "SELECT new br.com.fiap.gt.model.RentalCompany(rc.id, rc.name, rc.urlImage, "
 		+ "rc.description, rc.link) FROM RentalCompany rc WHERE LOWER(rc.name) LIKE :n")
@@ -49,14 +50,17 @@ public class RentalCompany {
 	private String link;
 
 	@JsonManagedReference
+	@JsonInclude(value = Include.NON_NULL)
 	@OneToMany(mappedBy = "rentalCompany", cascade = CascadeType.ALL)
 	private List<Car> cars;
-	
+
 	@JsonManagedReference
+	@JsonInclude(value = Include.NON_NULL)
 	@OneToMany(mappedBy = "rentalCompany", cascade = CascadeType.ALL)
 	private List<Schedule> schedules;
-	
+
 	@JsonManagedReference
+	@JsonInclude(value = Include.NON_NULL)
 	@OneToMany(mappedBy = "rentalCompany", cascade = CascadeType.ALL)
 	private List<Rating> ratings;
 
