@@ -50,6 +50,10 @@ public class Search {
 
 			System.out.println("Count Rating By Rental Company");
 			rentalCompany = rentalCompanyDao.search(1);
+
+			if (rentalCompany == null)
+				throw new EntityNotFoundException();
+
 			Long qttRating = ratingDao.countByRentalCompany(rentalCompany);
 			System.out.println("Quantity Rating: " + qttRating);
 			System.out.println("*".repeat(60));
@@ -97,6 +101,6 @@ public class Search {
 
 		em.close();
 		EntityManagerFactorySingleton.getInstance().close();
-		
+
 	}
 }
