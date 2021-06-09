@@ -20,7 +20,6 @@ public abstract class GenericDaoImpl<E, K> implements GenericDao<E, K> {
 	public GenericDaoImpl(EntityManager em) {
 		this.em = em;
 		this.clazz = (Class<E>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
-
 	}
 
 	@Override
@@ -63,5 +62,10 @@ public abstract class GenericDaoImpl<E, K> implements GenericDao<E, K> {
 		CriteriaQuery<E> query = builder.createQuery(clazz);
 		query.from(clazz);
 		return em.createQuery(query).getResultList();
+	}
+
+	@Override
+	public E createOrUpdate(E entity) {
+		return em.merge(entity);
 	}
 }

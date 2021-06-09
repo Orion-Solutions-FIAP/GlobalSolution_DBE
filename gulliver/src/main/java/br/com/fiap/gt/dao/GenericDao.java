@@ -16,4 +16,6 @@ public interface GenericDao<E, K> {
 	void commit() throws CommitException;
 	
 	List<E> getList();
+	
+	E createOrUpdate(E entity);
 }
