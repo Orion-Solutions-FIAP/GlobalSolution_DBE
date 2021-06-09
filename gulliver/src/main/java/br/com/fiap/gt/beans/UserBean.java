@@ -4,7 +4,6 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 
-import br.com.fiap.gt.dao.UserDao;
 import br.com.fiap.gt.dao.impl.UserDaoImpl;
 import br.com.fiap.gt.model.User;
 import br.com.fiap.gt.singleton.EntityManagerFactorySingleton;
