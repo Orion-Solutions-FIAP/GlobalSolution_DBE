@@ -13,7 +13,7 @@
     
 	<property name="javax.persistence.jdbc.driver"
               value="oracle.jdbc.OracleDriver" />
-      <property name="javax.persistence.jdbc.user" value="rm84310" />
+      <property name="javax.persistence.jdbc.user" value="RM84310" />
       <property name="javax.persistence.jdbc.password"
           value="271193" />
       <property name="javax.persistence.jdbc.url"
