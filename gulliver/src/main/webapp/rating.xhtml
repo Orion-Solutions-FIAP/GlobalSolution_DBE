@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+	  xmlns:f="http://java.sun.com/jsf/core">
+	
+	<h:head>
+	  	<title><ui:insert name="title">Progamer</ui:insert></title>
+	  	<h:outputStylesheet library="css" name="global.css"></h:outputStylesheet>
+	</h:head>
+	
+	<h:body>
+		<ui:composition template="_template.xhtml">
+			<ui:define name="content">
+					
+		    	<p:graphicImage class="p-jc-center" url="https://upload.wikimedia.org/wikipedia/pt/c/c8/Logotipo_da_Localiza_em_2014.png" styleClass="p-shadow-2" width="700"/>
+				<p:commandButton icon="pi pi-check" value="Validar" action="#{ratingBean.rate}" oncomplete="PF('rating').show()">
+					<f:ajax execute="@form" render="form-users"/>
+				</p:commandButton>
+					
+				
+				
+				<p:dialog modal="true" height="500" width="500" widgetVar="rating">
+					<h:form>
+						<p:card class="card-form">
+							<f:facet name="title" >Avaliação</f:facet>
+			
+							<h:panelGrid columns="2">
+		 
+								<p:outputLabel value="Titulo" for="title" />
+								<p:inputText id="title" value="#{ratingBean.rating.title}" required="true" requiredMessage="Erro de validação"/>
+								
+								<p:outputLabel value="Descrição" for="description"/>
+								<p:inputTextarea value="#{ratingBean.rating.description}" id="description" rows="6" cols="30"/>
+								
+								<p:outputLabel value="Nota" for="grade"/>
+								<p:rating id="grade" value="#{ratingBean.rating.grade}"/>
+										
+							</h:panelGrid>
+			
+							<f:facet name="footer">
+								<p:messages id="messages"/>
+								<p:commandButton icon="pi pi-check" value="Login" action="#{ratingBean.rate}">
+									<f:ajax execute="@form" render="form-users"/>
+								</p:commandButton>
+							</f:facet>
+						</p:card>
+					</h:form>
+				</p:dialog>
+			
+			</ui:define>
+		</ui:composition>
+		
+	</h:body>
+</html>

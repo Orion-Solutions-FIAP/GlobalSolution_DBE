@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -17,9 +18,6 @@
 		            <f:facet name="header">
 		                Locadoras
 		            </f:facet>
-		            <p:column style="width:2rem">
-		                <p:rowToggler/>
-		            </p:column>
 		
 		            <p:column headerText="Nome">
 		                <h:outputText value="#{rentalCompany.name}"/>
@@ -34,7 +32,7 @@
 		            </p:column>
 		
 		            <p:column headerText="Avaliacao">
-		                <p:rating readonly="true" value="100"/>
+		                <p:rating readonly="true" value="#{rentalCompany.ratingsAvg}"/>
 		            </p:column>
 		            
 		            <p:column>
