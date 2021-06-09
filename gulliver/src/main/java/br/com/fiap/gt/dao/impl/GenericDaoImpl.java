@@ -49,6 +49,7 @@ public abstract class GenericDaoImpl<E, K> implements GenericDao<E, K> {
 		try {
 			em.getTransaction().begin();
 			em.getTransaction().commit();
+
 		} catch (Exception e) {
 			em.getTransaction().rollback();
 			e.printStackTrace();

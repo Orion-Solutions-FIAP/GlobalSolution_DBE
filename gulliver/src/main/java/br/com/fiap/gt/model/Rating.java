@@ -1,5 +1,6 @@
 package br.com.fiap.gt.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,12 +15,16 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @IdClass(RatingPK.class)
 
 @NamedQueries({
-		@NamedQuery(name = "Rating.CountByRentalCompany", query = "SELECT COUNT(r.id) FROM Rating r WHERE r.rentalCompany = :rc"),
-		@NamedQuery(name = "Rating.FindByUser", query = "SELECT r FROM Rating r WHERE r.user = :u") })
+	@NamedQuery(name = "Rating.CountByRentalCompany", query = "SELECT COUNT(r.id) FROM Rating r WHERE r.rentalCompany = :rc"),
+	@NamedQuery(name = "Rating.FindByUser", query = "SELECT r FROM Rating r WHERE r.user = :u"),
+	@NamedQuery(name = "Rating.FindByRentalCompanyId", query = "SELECT r FROM Rating r WHERE r.rentalCompany.id = :id")
+})
 
 @Entity
 @Table(name = "T_GT_RATING")

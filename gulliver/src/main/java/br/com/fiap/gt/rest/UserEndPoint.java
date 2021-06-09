@@ -37,7 +37,11 @@ public class UserEndPoint {
 
 	@GET
 	@Path("{id}")
-	public Response findById(@PathParam("id") int id) {
+	public Response findById(@PathParam("id") Integer id) {
+
+		if (id == null)
+			return Response.status(Response.Status.BAD_REQUEST).build();
+
 		User user = userDao.search(id);
 		if (user == null)
 			return Response.status(Response.Status.NOT_FOUND).build();

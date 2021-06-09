@@ -42,7 +42,7 @@ public class User {
 	@Column(name = "nr_phone", nullable = false, length = 11)
 	private String phoneNumber;
 
-	@JsonManagedReference(value="user")
+	@JsonManagedReference(value = "user")
 	@JsonInclude(value = Include.NON_NULL)
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Rating> ratings;

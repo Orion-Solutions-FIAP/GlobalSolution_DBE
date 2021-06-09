@@ -38,7 +38,10 @@ public class RentalCompanyEndPoint {
 
 	@GET
 	@Path("{id}")
-	public Response findById(@PathParam("id") int id) {
+	public Response findById(@PathParam("id") Integer id) {
+		if (id == null)
+			return Response.status(Response.Status.BAD_REQUEST).build();
+		
 		RentalCompany rentalCompany = rentalCompanyDao.search(id);
 		if (rentalCompany == null)
 			return Response.status(Response.Status.NOT_FOUND).build();

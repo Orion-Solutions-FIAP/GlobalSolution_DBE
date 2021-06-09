@@ -37,7 +37,10 @@ public class CarEndPoint {
 
 	@GET
 	@Path("rentalcompany/{rentalCompanyId}")
-	public Response findByRentalCompany(@PathParam("rentalCompanyId") int id) {
+	public Response findByRentalCompany(@PathParam("rentalCompanyId") Integer id) {
+		if (id == null)
+			return Response.status(Response.Status.BAD_REQUEST).build();
+
 		List<Car> cars = carDao.findByRentalCompanyId(id);
 		if (cars == null)
 			return Response.status(Response.Status.NOT_FOUND).build();
@@ -46,7 +49,10 @@ public class CarEndPoint {
 
 	@GET
 	@Path("{id}")
-	public Response findById(@PathParam("id") int id) {
+	public Response findById(@PathParam("id") Integer id) {
+		if (id == null)
+			return Response.status(Response.Status.BAD_REQUEST).build();
+
 		Car car = carDao.search(id);
 		if (car == null)
 			return Response.status(Response.Status.NOT_FOUND).build();

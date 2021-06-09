@@ -38,7 +38,10 @@ public class ScheduleEndPoint {
 
 	@GET
 	@Path("rentalcompany/{rentalCompanyId}")
-	public Response findByRentalCompany(@PathParam("rentalCompanyId") int id) {
+	public Response findByRentalCompany(@PathParam("rentalCompanyId") Integer id) {
+		if (id == null)
+			return Response.status(Response.Status.BAD_REQUEST).build();
+		
 		List<Schedule> schedule = scheduleDao.findByRentalCompanyId(id);
 		if (schedule == null)
 			return Response.status(Response.Status.NOT_FOUND).build();
@@ -47,7 +50,7 @@ public class ScheduleEndPoint {
 
 	@GET
 	@Path("{id}")
-	public Response findById(@PathParam("id") int id) {
+	public Response findById(@PathParam("id") Integer id) {
 		Schedule schedule = scheduleDao.search(id);
 		if (schedule == null)
 			return Response.status(Response.Status.NOT_FOUND).build();

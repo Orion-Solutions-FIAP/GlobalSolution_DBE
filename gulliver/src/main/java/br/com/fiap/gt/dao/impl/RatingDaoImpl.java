@@ -10,7 +10,7 @@ import br.com.fiap.gt.model.RentalCompany;
 import br.com.fiap.gt.model.User;
 import br.com.fiap.gt.dao.RatingDao;
 
-public class RatingDaoImpl extends GenericDaoImpl<Rating, RatingPK> implements RatingDao{
+public class RatingDaoImpl extends GenericDaoImpl<Rating, RatingPK> implements RatingDao {
 
 	public RatingDaoImpl(EntityManager em) {
 		super(em);
@@ -18,14 +18,19 @@ public class RatingDaoImpl extends GenericDaoImpl<Rating, RatingPK> implements R
 
 	@Override
 	public Long countByRentalCompany(RentalCompany rentalCompany) {
-		return em.createNamedQuery("Rating.CountByRentalCompany", Long.class)
-		.setParameter("rc", rentalCompany).getSingleResult();
+		return em.createNamedQuery("Rating.CountByRentalCompany", Long.class).setParameter("rc", rentalCompany)
+				.getSingleResult();
 	}
 
 	@Override
 	public List<Rating> findByUser(User user) {
-		return em.createNamedQuery("Rating.FindByUser", Rating.class)
-		.setParameter("u", user).setMaxResults(20).getResultList();
+		return em.createNamedQuery("Rating.FindByUser", Rating.class).setParameter("u", user).setMaxResults(20)
+				.getResultList();
+	}
+
+	@Override
+	public List<Rating> findByRentalCompanyId(int id) {
+		return em.createNamedQuery("Rating.FindByRentalCompanyId", Rating.class).setParameter("id", id).getResultList();
 	}
 
 }
