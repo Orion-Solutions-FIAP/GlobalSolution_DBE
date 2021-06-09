@@ -32,5 +32,5 @@ public class UserDaoImpl extends GenericDaoImpl<User, Integer> implements UserDa
 		} 
 		
 	}
-	
 }
+
