@@ -10,7 +10,7 @@
 <ui:composition template="_template.xhtml">
 
 	<ui:define name="content">
-
+		
 		<div class="card">
 		    <h:form>
 		        <p:dataTable var="rentalCompany" value="#{rentalCompanyBean.rentalCompanies}">
@@ -36,26 +36,10 @@
 		            <p:column headerText="Avaliacao">
 		                <p:rating readonly="true" value="100"/>
 		            </p:column>
-		
-		            <p:rowExpansion>
-		                
-	                    <div class="p-d-flex">
-	                    	
-	                    	<div class="p-mr-2">
-	                    		<p:graphicImage url="#{rentalCompany.urlImage}"/>
-	                    	</div>
-	                        <div class="p-mr-2">
-	                            <div class="product-name">#{rentalCompany.name}</div>
-	                            <div class="product-description">#{rentalCompany.description}</div>
-	                            <p:rating readonly="true" value="100"/>
-	                        </div>
-	                        <div class="p-mr-2">
-                            	<p:commandButton value="Avaliar" type="button"></p:commandButton>
-                        	</div>
-	                          
-	                    </div>
-		                
-		            </p:rowExpansion>
+		            
+		            <p:column>
+		                <p:commandButton value="Ver Mais" type="button"></p:commandButton>
+		            </p:column>
 		            
 		        </p:dataTable>
 		    </h:form>
