@@ -26,7 +26,7 @@
 		            </p:column>
 		
 		            <p:column headerText="Image">
-		                <p:graphicImage name="demo/images/product/#{rentalCompany.url}" styleClass="p-shadow-2" width="100"/>
+		                <p:graphicImage url="#{rentalCompany.urlImage}" styleClass="p-shadow-2" width="100"/>
 		            </p:column>
 		
 		            <p:column headerText="Descricao">
@@ -40,7 +40,7 @@
 		            <p:rowExpansion>
 		                <div class="product">
 		                    <div class="product-list-item">
-		                        <p:graphicImage name="demo/images/product/#{rentalCompany.url}"/>
+		                        <p:graphicImage url="#{rentalCompany.urlImage}"/>
 		                        <div class="product-list-detail">
 		                            <div class="product-name">#{rentalCompany.name}</div>
 		                            <div class="product-description">#{rentalCompany.description}</div>
