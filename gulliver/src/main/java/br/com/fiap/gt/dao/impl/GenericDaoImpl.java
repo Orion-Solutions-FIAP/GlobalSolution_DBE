@@ -9,7 +9,6 @@ import javax.persistence.criteria.CriteriaQuery;
 
 import br.com.fiap.gt.dao.GenericDao;
 import br.com.fiap.gt.exception.CommitException;
-import br.com.fiap.gt.exception.EntityNotFoundException;
 
 public abstract class GenericDaoImpl<E, K> implements GenericDao<E, K> {
 
@@ -30,10 +29,8 @@ public abstract class GenericDaoImpl<E, K> implements GenericDao<E, K> {
 	}
 
 	@Override
-	public E search(K id) throws EntityNotFoundException {
+	public E search(K id) {
 		E entity = em.find(clazz, id);
-		if (entity == null)
-			throw new EntityNotFoundException();
 		return entity;
 	}
 
@@ -43,7 +40,7 @@ public abstract class GenericDaoImpl<E, K> implements GenericDao<E, K> {
 	}
 
 	@Override
-	public void delete(K id) throws EntityNotFoundException {
+	public void delete(K id) {
 		em.remove(search(id));
 	}
 

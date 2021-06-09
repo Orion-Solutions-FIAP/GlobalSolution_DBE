@@ -16,7 +16,6 @@ import javax.ws.rs.core.Response;
 import br.com.fiap.gt.dao.UserDao;
 import br.com.fiap.gt.dao.impl.UserDaoImpl;
 import br.com.fiap.gt.exception.CommitException;
-import br.com.fiap.gt.exception.EntityNotFoundException;
 import br.com.fiap.gt.model.User;
 import br.com.fiap.gt.singleton.EntityManagerFactorySingleton;
 
@@ -39,12 +38,10 @@ public class UserEndPoint {
 	@GET
 	@Path("{id}")
 	public Response findById(@PathParam("id") int id) {
-		try {
-			User user = userDao.search(id);
-			return Response.status(Response.Status.OK).entity(user).build();
-		} catch (EntityNotFoundException e) {
+		User user = userDao.search(id);
+		if (user == null)
 			return Response.status(Response.Status.NOT_FOUND).build();
-		}
+		return Response.status(Response.Status.OK).entity(user).build();
 	}
 
 	@PUT
@@ -56,13 +53,11 @@ public class UserEndPoint {
 			return Response.status(Response.Status.BAD_REQUEST).build();
 
 		try {
-			user = userDao.search(id);
+			if (userDao.search(id) == null)
+				return Response.status(Response.Status.NOT_FOUND).build();
 			userDao.update(user);
 			userDao.commit();
-			user.setRatings(null);;
 			return Response.status(Response.Status.OK).entity(user).build();
-		} catch (EntityNotFoundException e) {
-			return Response.status(Response.Status.NOT_FOUND).build();
 		} catch (CommitException e) {
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
 		}
@@ -90,12 +85,11 @@ public class UserEndPoint {
 			return Response.status(Response.Status.BAD_REQUEST).build();
 
 		try {
-			User user = userDao.search(id);
-			userDao.delete(user.getId());
+			if (userDao.search(id) == null)
+				return Response.status(Response.Status.NOT_FOUND).build();
+			userDao.delete(id);
 			userDao.commit();
 			return Response.status(Response.Status.OK).build();
-		} catch (EntityNotFoundException e) {
-			return Response.status(Response.Status.NOT_FOUND).build();
 		} catch (CommitException e) {
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
 		}
