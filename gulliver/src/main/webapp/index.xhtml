@@ -34,24 +34,27 @@
 		            </p:column>
 		
 		            <p:column headerText="Avaliacao">
-		                <p:rating readonly="true" value="#{rentalCompany.rating.grade}"/>
+		                <p:rating readonly="true" value="100"/>
 		            </p:column>
 		
 		            <p:rowExpansion>
-		                <div class="product">
-		                    <div class="product-list-item">
-		                        <p:graphicImage url="#{rentalCompany.urlImage}"/>
-		                        <div class="product-list-detail">
-		                            <div class="product-name">#{rentalCompany.name}</div>
-		                            <div class="product-description">#{rentalCompany.description}</div>
-		                            <p:rating readonly="true" value="#{rentalCompany.rating.grade}"/>
-		                        </div>
-		                        
-		                        <div class="product-list-action">
-		                            <p:commandButton value="Avaliar" type="button"></p:commandButton>
-		                        </div>
-		                    </div>
-		                </div>
+		                
+	                    <div class="p-d-flex">
+	                    	
+	                    	<div class="p-mr-2">
+	                    		<p:graphicImage url="#{rentalCompany.urlImage}"/>
+	                    	</div>
+	                        <div class="p-mr-2">
+	                            <div class="product-name">#{rentalCompany.name}</div>
+	                            <div class="product-description">#{rentalCompany.description}</div>
+	                            <p:rating readonly="true" value="100"/>
+	                        </div>
+	                        <div class="p-mr-2">
+                            	<p:commandButton value="Avaliar" type="button"></p:commandButton>
+                        	</div>
+	                          
+	                    </div>
+		                
 		            </p:rowExpansion>
 		            
 		        </p:dataTable>
