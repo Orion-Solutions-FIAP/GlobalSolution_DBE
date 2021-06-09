@@ -15,9 +15,15 @@ public class ScheduleDaoImpl extends GenericDaoImpl<Schedule, Integer> implement
 	}
 
 	@Override
-	public List<Schedule> findByRentalCompany(RentalCompany rentalCompany) {		
-		return em.createNamedQuery("Schedule.FindByRentalCompany", Schedule.class)
-		.setParameter("rc", rentalCompany).getResultList();
+	public List<Schedule> findByRentalCompany(RentalCompany rentalCompany) {
+		return em.createNamedQuery("Schedule.FindByRentalCompany", Schedule.class).setParameter("rc", rentalCompany)
+				.getResultList();
+	}
+
+	@Override
+	public List<Schedule> findByRentalCompanyId(int id) {
+		return em.createNamedQuery("Schedule.FindByRentalCompanyId", Schedule.class).setParameter("rc", id)
+				.getResultList();
 	}
 
 }

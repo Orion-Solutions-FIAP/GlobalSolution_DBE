@@ -12,9 +12,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -23,8 +26,12 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
 
-@NamedQuery(name = "Schedule.FindByRentalCompany", query = "SELECT new br.com.fiap.gt.model.Schedule(s.day, s.openingHour, s.closingHour) "
-		+ "FROM Schedule s WHERE s.rentalCompany = :rc")
+@NamedQueries({
+
+		@NamedQuery(name = "Schedule.FindByRentalCompany", query = "SELECT new br.com.fiap.gt.model.Schedule(s.day, s.openingHour, s.closingHour) "
+				+ "FROM Schedule s WHERE s.rentalCompany = :rc"),
+		@NamedQuery(name = "Schedule.FindByRentalCompanyId", query = "SELECT new br.com.fiap.gt.model.Schedule(s.id, s.rentalCompany, s.day, s.openingHour, s.closingHour) "
+				+ "FROM Schedule s WHERE s.rentalCompany.id = :rc") })
 
 @Entity
 @Table(name = "T_GT_SCHEDULE")
@@ -50,7 +57,7 @@ public class Schedule {
 	@JsonFormat(pattern = "HH:mm")
 	@Column(name = "hr_opening")
 	private LocalTime openingHour;
-	
+
 	@JsonSerialize(using = LocalTimeSerializer.class)
 	@JsonDeserialize(using = LocalTimeDeserializer.class)
 	@JsonFormat(pattern = "HH:mm")
@@ -77,9 +84,16 @@ public class Schedule {
 		this.closingHour = closingHour;
 	}
 
-	
 	public Schedule(Day day, LocalTime openingHour, LocalTime closingHour) {
 		super();
+		this.day = day;
+		this.openingHour = openingHour;
+		this.closingHour = closingHour;
+	}
+
+	public Schedule(int id, Day day, LocalTime openingHour, LocalTime closingHour) {
+		super();
+		this.id = id;
 		this.day = day;
 		this.openingHour = openingHour;
 		this.closingHour = closingHour;
@@ -127,6 +141,7 @@ public class Schedule {
 
 	@Override
 	public String toString() {
-		return "Schedule [Day=" + day + ", Opening Hour=" + openingHour.format(DateTimeFormatter.ISO_TIME) + ", Closing Hour=" + closingHour.format(DateTimeFormatter.ISO_TIME) + "]";
+		return "Schedule [Day=" + day + ", Opening Hour=" + openingHour.format(DateTimeFormatter.ISO_TIME)
+				+ ", Closing Hour=" + closingHour.format(DateTimeFormatter.ISO_TIME) + "]";
 	}
 }
