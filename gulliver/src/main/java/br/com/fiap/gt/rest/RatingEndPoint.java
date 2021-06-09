@@ -31,6 +31,9 @@ import br.com.fiap.gt.singleton.EntityManagerFactorySingleton;
 public class RatingEndPoint {
 
 	private RatingDao ratingDao = new RatingDaoImpl(EntityManagerFactorySingleton.getInstance().createEntityManager());
+	private RentalCompanyDao rentalCompanyDao = new RentalCompanyDaoImpl(
+			EntityManagerFactorySingleton.getInstance().createEntityManager());
+	private UserDao userDao = new UserDaoImpl(EntityManagerFactorySingleton.getInstance().createEntityManager());
 
 	@GET
 	public Response index() {
@@ -96,8 +99,15 @@ public class RatingEndPoint {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response create(Rating rating) {
-		if (rating == null)
+		if (rating == null || rating.getRentalCompany() == null || rating.getUser() == null)
 			return Response.status(Response.Status.BAD_REQUEST).build();
+
+		RentalCompany rentalCompany = rentalCompanyDao.search(rating.getRentalCompany().getId());
+		User user = userDao.search(rating.getUser().getId());
+
+		if (rentalCompany == null || user == null)
+			return Response.status(Response.Status.BAD_REQUEST).build();
+
 		try {
 			rating = ratingDao.createOrUpdate(rating);
 			ratingDao.commit();
