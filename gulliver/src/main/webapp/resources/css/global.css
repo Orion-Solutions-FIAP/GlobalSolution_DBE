@@ -5,53 +5,15 @@ body{
 	background: #eee;
 }
 
-.card-form{
-	width: 25em;
-	margin: 10px auto;
+.botoes{
+	display:flex;
+    justify-content: flex-end;
 }
 
-button.cancel-button{
-	margin-left: .5em;
+body .ui-button{
+	margin: 0 0.5rem;
 }
 
-.setup-list-item{
-	display: -ms-flexbox;
-	display: flex;
-	-ms-flex-align: center;
-	align-items: center;
-	padding: 1rem;
-}
-
-.setup-list-detail{
-	flex: 1 1 0;
-	-ms-flex:1 1 0;
-}
-
-.setup-name{
-	font-size: 1rem;
-	font-weight: 700;
-}
-
-.setup-description {
-    margin: 0 0 1rem 0;
-}
-
-.product .setup-list-item .setup-list-action {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-direction: column;
-    flex-direction: column;
-}
-
-.product .setup-list-item .setup-price {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: .5rem;
-    align-self: flex-end;
-}
-
-.product .setup-list-item img {
-    width: 150px;
-    box-shadow: 0 3px 6px rgb(0 0 0 / 16%), 0 3px 6px rgb(0 0 0 / 23%);
-    margin-right: 2rem;
+body .ui-datatable thead th .avaliacao{
+	text-align: center;
 }

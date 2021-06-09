@@ -1,5 +1,7 @@
 package br.com.fiap.gt.beans;
 
+import java.util.List;
+
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
@@ -20,8 +22,9 @@ public class RatingBean {
 	
 	private Rating rating = new Rating();
 	
+	RatingDao ratingDao = new RatingDaoImpl(em);
+	
 	public void rate() {
-		RatingDao ratingDao = new RatingDaoImpl(em);
 		try {
 			this.getRating().setRentalCompany(new RentalCompanyDaoImpl(em).search(1));
 			this.getRating().setUser(new UserDaoImpl(em).search(1));
@@ -30,6 +33,10 @@ public class RatingBean {
 			e.printStackTrace();
 		}
 		ratingDao.create(this.getRating());
+	}
+	
+	public List<Rating> getListRating(){
+		return ratingDao.getList();
 	}
 
 	public Rating getRating() {
