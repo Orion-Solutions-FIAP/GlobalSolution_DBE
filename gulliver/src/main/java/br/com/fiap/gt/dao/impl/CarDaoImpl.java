@@ -20,5 +20,12 @@ public class CarDaoImpl extends GenericDaoImpl<Car, Integer> implements CarDao {
 				.setParameter("is", isActive)
 				.getResultList();
 	}
+
+	@Override
+	public List<Car> findByRentalCompanyId(int id) {
+		return em.createNamedQuery("Car.FindByRentalCompanyId", Car.class)
+				.setParameter("id", id)
+				.getResultList();
+	}
 	
 }

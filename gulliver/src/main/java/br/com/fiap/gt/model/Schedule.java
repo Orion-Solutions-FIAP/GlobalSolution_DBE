@@ -21,17 +21,17 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
 
-@NamedQueries({
-
-		@NamedQuery(name = "Schedule.FindByRentalCompany", query = "SELECT new br.com.fiap.gt.model.Schedule(s.day, s.openingHour, s.closingHour) "
-				+ "FROM Schedule s WHERE s.rentalCompany = :rc"),
-		@NamedQuery(name = "Schedule.FindByRentalCompanyId", query = "SELECT new br.com.fiap.gt.model.Schedule(s.id, s.rentalCompany, s.day, s.openingHour, s.closingHour) "
-				+ "FROM Schedule s WHERE s.rentalCompany.id = :rc") })
+@NamedQueries({	
+	@NamedQuery(name = "Schedule.FindByRentalCompany", query = "SELECT new br.com.fiap.gt.model.Schedule(s.day, s.openingHour, s.closingHour) "
+			+ "FROM Schedule s WHERE s.rentalCompany = :rc"),
+	@NamedQuery(name = "Schedule.FindByRentalCompanyId", query = "SELECT s FROM Schedule s WHERE s.rentalCompany.id = :rc") 
+})
 
 @Entity
 @Table(name = "T_GT_SCHEDULE")

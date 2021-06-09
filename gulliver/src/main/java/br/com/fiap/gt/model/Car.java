@@ -9,13 +9,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-@NamedQuery(name = "Car.FindByBrandAndIsActive", query = "SELECT c FROM Car c WHERE LOWER(c.brand) LIKE :b AND c.isActive = :is")
+@NamedQueries({
+	@NamedQuery(name = "Car.FindByBrandAndIsActive", query = "SELECT c FROM Car c WHERE LOWER(c.brand) LIKE :b AND c.isActive = :is"),
+	@NamedQuery(name = "Car.FindByRentalCompanyId", query = "SELECT c FROM Car c WHERE c.rentalCompany.id = :id") 
+})
 
 @Entity
 @Table(name = "T_GT_CAR")
