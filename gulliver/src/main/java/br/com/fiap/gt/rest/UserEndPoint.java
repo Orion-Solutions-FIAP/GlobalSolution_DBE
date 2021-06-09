@@ -3,7 +3,9 @@ package br.com.fiap.gt.rest;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -22,12 +24,12 @@ import br.com.fiap.gt.singleton.EntityManagerFactorySingleton;
 @Produces(MediaType.APPLICATION_JSON)
 public class UserEndPoint {
 
-	private UserDao userdao = new UserDaoImpl(EntityManagerFactorySingleton.getInstance().createEntityManager());
+	private UserDao userDao = new UserDaoImpl(EntityManagerFactorySingleton.getInstance().createEntityManager());
 
 	@GET
 	public Response index() {
 		try {
-			List<User> users = userdao.getList();
+			List<User> users = userDao.getList();
 			return Response.status(Response.Status.OK).entity(users).build();
 		} catch (Exception e) {
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
@@ -38,7 +40,7 @@ public class UserEndPoint {
 	@Path("{id}")
 	public Response findById(@PathParam("id") int id) {
 		try {
-			User user = userdao.search(id);
+			User user = userDao.search(id);
 			return Response.status(Response.Status.OK).entity(user).build();
 		} catch (EntityNotFoundException e) {
 			return Response.status(Response.Status.NOT_FOUND).build();
@@ -54,10 +56,43 @@ public class UserEndPoint {
 			return Response.status(Response.Status.BAD_REQUEST).build();
 
 		try {
-			user = userdao.search(id);
-			userdao.update(user);
-			userdao.commit();
+			user = userDao.search(id);
+			userDao.update(user);
+			userDao.commit();
 			return Response.status(Response.Status.OK).entity(user).build();
+		} catch (EntityNotFoundException e) {
+			return Response.status(Response.Status.NOT_FOUND).build();
+		} catch (CommitException e) {
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+		}
+	}
+
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response create(User user) {
+		if (user == null)
+			return Response.status(Response.Status.BAD_REQUEST).build();
+
+		try {
+			userDao.create(user);
+			userDao.commit();
+			return Response.status(Response.Status.CREATED).entity(user).build();
+		} catch (CommitException e) {
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+		}
+	}
+
+	@DELETE
+	@Path("{id}")
+	public Response delete(@PathParam("id") Integer id) {
+		if (id == null)
+			return Response.status(Response.Status.BAD_REQUEST).build();
+
+		try {
+			User user = userDao.search(id);
+			userDao.delete(user.getId());
+			userDao.commit();
+			return Response.status(Response.Status.OK).build();
 		} catch (EntityNotFoundException e) {
 			return Response.status(Response.Status.NOT_FOUND).build();
 		} catch (CommitException e) {
