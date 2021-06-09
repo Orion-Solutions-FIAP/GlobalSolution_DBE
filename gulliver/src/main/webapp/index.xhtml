@@ -11,7 +11,55 @@
 
 	<ui:define name="content">
 
-		<h1>TESTE</h1>
+		<div class="card">
+		    <h:form>
+		        <p:dataTable var="rentalCompany" value="#{rentalCompanyBean.rentalCompanies}">
+		            <f:facet name="header">
+		                Locadoras
+		            </f:facet>
+		            <p:column style="width:2rem">
+		                <p:rowToggler/>
+		            </p:column>
+		
+		            <p:column headerText="Nome">
+		                <h:outputText value="#{rentalCompany.name}"/>
+		            </p:column>
+		
+		            <p:column headerText="Image">
+		                <p:graphicImage url="#{rentalCompany.urlImage}" styleClass="p-shadow-2" width="100"/>
+		            </p:column>
+		
+		            <p:column headerText="Descricao">
+		                <h:outputText value="#{rentalCompany.description}"/>
+		            </p:column>
+		
+		            <p:column headerText="Avaliacao">
+		                <p:rating readonly="true" value="100"/>
+		            </p:column>
+		
+		            <p:rowExpansion>
+		                
+	                    <div class="p-d-flex">
+	                    	
+	                    	<div class="p-mr-2">
+	                    		<p:graphicImage url="#{rentalCompany.urlImage}"/>
+	                    	</div>
+	                        <div class="p-mr-2">
+	                            <div class="product-name">#{rentalCompany.name}</div>
+	                            <div class="product-description">#{rentalCompany.description}</div>
+	                            <p:rating readonly="true" value="100"/>
+	                        </div>
+	                        <div class="p-mr-2">
+                            	<p:commandButton value="Avaliar" type="button"></p:commandButton>
+                        	</div>
+	                          
+	                    </div>
+		                
+		            </p:rowExpansion>
+		            
+		        </p:dataTable>
+		    </h:form>
+		</div>
 
 	</ui:define>
 

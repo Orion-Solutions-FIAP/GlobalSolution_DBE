@@ -15,6 +15,7 @@ import br.com.fiap.gt.singleton.EntityManagerFactorySingleton;
 public class UserBean {
 	
 	EntityManager em = EntityManagerFactorySingleton.getInstance().createEntityManager();
+
 	private User user = new User();
 	
 	public String login() {
@@ -39,8 +40,10 @@ public class UserBean {
 		this.user = user;
 	}
 	
-	
-	
-	
-
+	public String save() {
+		UserDaoImpl uDao = new UserDaoImpl(em);
+		uDao.create(this.user);
+		this.user = new User();
+		return "index?faces-redirect=true";
+	}
 }

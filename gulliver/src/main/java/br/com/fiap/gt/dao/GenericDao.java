@@ -1,6 +1,9 @@
 package br.com.fiap.gt.dao;
 
 import br.com.fiap.gt.exception.EntityNotFoundException;
+
+import java.util.List;
+
 import br.com.fiap.gt.exception.CommitException;
 
 public interface GenericDao<E, K> {
@@ -13,4 +16,6 @@ public interface GenericDao<E, K> {
 	void delete(K id) throws EntityNotFoundException;
 
 	void commit() throws CommitException;
+	
+	List<E> getList();
 }
