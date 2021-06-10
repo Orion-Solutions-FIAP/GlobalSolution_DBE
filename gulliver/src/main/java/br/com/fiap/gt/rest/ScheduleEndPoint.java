@@ -13,7 +13,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import br.com.fiap.gt.dao.RentalCompanyDao;
 import br.com.fiap.gt.dao.ScheduleDao;
+import br.com.fiap.gt.dao.impl.RentalCompanyDaoImpl;
 import br.com.fiap.gt.dao.impl.ScheduleDaoImpl;
 import br.com.fiap.gt.exception.CommitException;
 import br.com.fiap.gt.exception.EntityNotFoundException;
@@ -25,6 +27,8 @@ import br.com.fiap.gt.singleton.EntityManagerFactorySingleton;
 public class ScheduleEndPoint {
 
 	private ScheduleDao scheduleDao = new ScheduleDaoImpl(
+			EntityManagerFactorySingleton.getInstance().createEntityManager());
+	private RentalCompanyDao rentalCompanyDao = new RentalCompanyDaoImpl(
 			EntityManagerFactorySingleton.getInstance().createEntityManager());
 
 	@GET
@@ -90,13 +94,16 @@ public class ScheduleEndPoint {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response create(Schedule schedule) {
-		if (schedule == null)
+		if (schedule == null || schedule.getRentalCompany() == null)
 			return Response.status(Response.Status.BAD_REQUEST).build();
 
 		try {
+			rentalCompanyDao.search(schedule.getRentalCompany().getId());
 			scheduleDao.create(schedule);
 			scheduleDao.commit();
 			return Response.status(Response.Status.CREATED).entity(schedule).build();
+		} catch (EntityNotFoundException e) {
+			return Response.status(Response.Status.NOT_FOUND).build();
 		} catch (CommitException e) {
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
 		}

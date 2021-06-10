@@ -61,7 +61,9 @@ public class RentalCompanyEndPoint {
 			return Response.status(Response.Status.BAD_REQUEST).build();
 
 		try {
-			rentalCompanyDao.search(id);
+			RentalCompany rentalCompanyBase = rentalCompanyDao.search(id);
+			rentalCompany.setCars(rentalCompanyBase.getCars());
+			rentalCompany.setRatings(rentalCompanyBase.getRatings());
 			rentalCompanyDao.update(rentalCompany);
 			rentalCompanyDao.commit();
 			return Response.status(Response.Status.OK).entity(rentalCompany).build();

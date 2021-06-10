@@ -23,6 +23,8 @@ import br.com.fiap.gt.exception.CommitException;
 import br.com.fiap.gt.exception.EntityNotFoundException;
 import br.com.fiap.gt.model.Rating;
 import br.com.fiap.gt.model.RatingPK;
+import br.com.fiap.gt.model.RentalCompany;
+import br.com.fiap.gt.model.User;
 import br.com.fiap.gt.singleton.EntityManagerFactorySingleton;
 
 @Path("/rating")
@@ -103,8 +105,10 @@ public class RatingEndPoint {
 			return Response.status(Response.Status.BAD_REQUEST).build();
 
 		try {
-			rentalCompanyDao.search(rating.getRentalCompany().getId());
-			userDao.search(rating.getUser().getId());
+			RentalCompany rentalCompany = rentalCompanyDao.search(rating.getRentalCompany().getId());
+			User user = userDao.search(rating.getUser().getId());
+			rating.setRentalCompany(rentalCompany);
+			rating.setUser(user);
 			rating = ratingDao.createOrUpdate(rating);
 			ratingDao.commit();
 			return Response.status(Response.Status.CREATED).entity(rating).build();
