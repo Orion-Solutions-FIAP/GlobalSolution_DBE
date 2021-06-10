@@ -6,12 +6,9 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 	
-<h:head>
-	<h:outputStylesheet library="css" name="global.css"></h:outputStylesheet>
-	<title><ui:insert name="title">Gulliver Traveller</ui:insert></title>
-</h:head>
+<ui:composition template="_template.xhtml">
 
-<h:body>
+	<ui:define name="content">
 			<h:form>
 				<p:card class="card-form">
 					<f:facet name="title">New User</f:facet>
@@ -48,5 +45,7 @@
 					</f:facet>
 				</p:card>
 			</h:form>
-</h:body>
+	</ui:define>
+
+</ui:composition>
 </html>
