@@ -11,4 +11,8 @@ public interface CarDao extends GenericDao<Car, Integer> {
 	
 	//Buscar carros pelo Id da locadora de carros
 	List<Car> findByRentalCompanyId(int id);
+
+	//Buscar carros por locadora
+	List<Car> findByRentalCompany(int id);
+
 }

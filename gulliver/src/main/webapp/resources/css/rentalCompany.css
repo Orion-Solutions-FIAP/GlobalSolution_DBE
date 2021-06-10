@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Slab:ital,wght@1,600&family=Permanent+Marker&family=Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Slab&display=swap');
+@charset "UTF-8";
+
+body, body{
+	height: 100vh;
+	margin: 0;
+}
+
+.layout{
+	position: relative;
+	height: 100vh;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;	
+	 background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url("https://i.pinimg.com/originals/be/b9/58/beb958e56b3cb2ce745e880c9d482e04.jpg");
+ 	background-repeat: no-repeat;
+  	background-size: cover;
+}
+
+
+.imageLogo{
+	top: 2%;
+	left: 0%;
+	border-color: white;
+	border-style: solid;
+	border-left: 0;
+	position: absolute;
+	margin-bottom: 4em;
+	width: 14vw;
+	height: 14vh
+	
+}
+
+.layout .button{
+	position: absolute;
+	width: 16em;
+	height: 3em;
+	bottom: 2%;
+	left: 0%;
+}
+
+.images{
+	justify-content: center;
+	align-items: center;
+	align-self: center;
+	display: flex;
+	flex-direction: column;
+}
+
+.info{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	align-self: center;
+	color: #FFFFFF;
+	max-width: 35%;
+	height: auto;
+	padding: 4em;
+}
+
+.description{
+	font-family: 'Josefin Slab', serif;
+	text-indent: 2em;
+	font-size: 24pt;
+	text-align: justify;
+}
+
+.link{
+	color: blue;
+	text-decoration: none;
+	font-size: 15pt;
+}
+
+.text{
+	font-family: 'Josefin Slab', serif;
+	font-family: 'Permanent Marker', cursive;
+	font-family: 'Righteous', cursive;
+	font-size:65pt;
+}
+
+.underline{
+  background-image: linear-gradient(120deg, #0699F0 6%, #192824 100%);
+  background-repeat: no-repeat;
+  background-size: 100% 0.2em;
+  background-position: 0 88%;
+  transition: background-size 0.25s ease-in;
+}
+
+.underline:hover{
+	background-size: 100% 88%;
+ }
+ 
+ .carSection{
+ 	margin: 0;
+ }
+ 
+ body .carSection .ui-datatable .ui-datatable-header{
+	font-family: 'Josefin Slab', serif;
+ 	font-size: 26pt;
+ 	color: black;
+    text-align: center;
+    background-color: #AB9F9D;
+}
+
+.carSection .ui-datatable table {
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: fixed;
+    background-color: black;
+}
+ 
+body .carSection .ui-datatable .ui-datatable-data > tr {
+    background: #E8E9EB;
+    color: #495057;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    font-size: 15pt;
+}
+ 
+body .carSection .ui-datatable .ui-datatable-data > tr > td {
+    padding: 3rem 1rem;
+    text-align: center;
+}
+
+body .carSection .ui-datatable thead th {
+	font-family: 'Josefin Slab', serif;
+	font-size: 20pt;
+    background: #E0DFD5;
+    color: #161616;
+    text-align: center;
+}

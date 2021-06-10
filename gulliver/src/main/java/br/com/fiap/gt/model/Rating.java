@@ -38,13 +38,13 @@ public class Rating {
 
 	@JsonBackReference
 	@Id
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.MERGE )
 	@JoinColumn(name = "id_rental_comp")
 	private RentalCompany rentalCompany;
 
 	@JsonBackReference(value="user")
 	@Id
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.MERGE )
 	@JoinColumn(name = "id_user")
 	private User user;
 

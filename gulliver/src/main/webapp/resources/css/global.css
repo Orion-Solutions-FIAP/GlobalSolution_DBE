@@ -1,9 +1,51 @@
 
+
 @charset "UTF-8";
 
-body{
+body .listSection{
 	background: #eee;
 }
+
+.listSection .botoes{
+	display:flex;
+    justify-content: flex-end;
+}
+
+body .listSection  .ui-button{
+	margin: 0 0.5rem;
+}
+
+body .listSection  .ui-datatable thead th .avaliacao{
+	text-align: center;
+}
+
+.listSection  .product-name{
+	font-weight: bold
+}
+	
+.listSection  .product-list-item{
+	display:flex;
+	justify-content:space-between;
+	align-items: center;
+}
+
+.listSection  .product-list-detail{
+	align-self: start;
+	max-width: 60%;
+}
+
+.listSection .product-list-detail div{
+	margin: 0.5rem;
+}
+
+body .listSection .ui-datatable .ui-datatable-header {
+    font-family: 'Josefin Slab', serif;
+ 	font-size: 26pt;
+ 	color: black;
+    text-align: center;
+    background-color: #AB9F9D;	
+}
+
 
 .card-form{
 	width: 25em;

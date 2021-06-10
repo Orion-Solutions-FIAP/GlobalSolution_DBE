@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+	  xmlns:f="http://java.sun.com/jsf/core">
+	
+	<head>
+	  	<title><ui:insert name="title">Gulliver</ui:insert></title>
+	  	<h:outputStylesheet library="css" name="global.css"></h:outputStylesheet>
+	</head>
+	
+	<h:body>
+		<ui:composition template="_template.xhtml">
+			<ui:define name="content">
+				<div class="layout">
+					<div class="info">
+						<h:outputText styleClass="text underline" value="#{rentalCompanyBean.rentalCompany.name}"/>
+	    				<h:outputText styleClass="description" value="#{rentalCompanyBean.rentalCompany.description}"/>
+    					<h:link styleClass="link" value="#{rentalCompanyBean.rentalCompany.link}"/>
+    					<p:commandButton styleClass="button ui-button-help" icon="pi pi-heart" value="Avaliar" action="#{ratingBean.rate}" oncomplete="PF('rating').show()">
+							<f:ajax execute="@form" render="form-users"/>
+						</p:commandButton>
+					</div>
+		    		<p:graphicImage url="#{rentalCompanyBean.rentalCompany.urlImage}" styleClass="p-shadow-2 imageLogo" width="700"/>
+					<div class="images">
+				    	<p:gmap styleClass="map" center="#{rentalCompanyBean.rentalCompany.latitude}, #{rentalCompanyBean.rentalCompany.longitude}" zoom="18" type="HYBRID" style="width:650px;height:350px"/>
+					</div>
+				</div>
+				
+				
+				<div class="carSection">
+					<div class="card" id="card-setup-list"> 
+						<h:form id="form-setups">
+							<p:dataTable 
+								var="car"
+								value="#{rentalCompanyBean.carsFromRentalCompany}">
+								<f:facet id="teste" name="header">
+				                	Lista de carros da locadora
+				            	</f:facet>
+								<p:column headerText="Modelo">
+					                <h:outputText value="#{car.model}" />
+					            </p:column>
+					            <p:column headerText="Marca">
+					                <h:outputText value="#{car.brand}" />
+					            </p:column>
+					            <p:column headerText="Custo diário">
+					                <h:outputText value="#{car.dailyValue}" />
+					            </p:column>
+					            <p:column headerText="Disponibilidade">
+					                <h:outputText value="#{car.active ? 'Disponivel' : 'Indisponível'}" />
+					            </p:column>
+							</p:dataTable>
+						</h:form> 
+					</div>
+				</div>
+				
+				<div class="listSection">
+					<div class="card">
+					    <h:form>
+					        <p:dataTable var="rating" value="#{ratingBean.rentalRating}">
+					            <f:facet name="header">
+					                Avaliações
+					            </f:facet>
+					            
+					            <p:column style="width:2rem">
+			                		<p:rowToggler/>
+			            		</p:column>
+					
+					            <p:column headerText="Locadora">
+					                <h:outputText value="#{rating.rentalCompany.name}"/>
+					            </p:column>
+					
+					            <p:column headerText="Titulo">
+					                <h:outputText value="#{rating.title}"/>
+					            </p:column>
+					
+					            <p:column styleClass="avaliacao" headerText="Avaliacao">
+					                <p:rating readonly="true" value="#{rating.grade}"/>
+					            </p:column>
+					            
+					             <p:rowExpansion>
+					                <div class="product">
+					                    <div class="product-list-item">
+					                    	<p:graphicImage url="#{rating.rentalCompany.urlImage}" width="100"/>
+					                    	
+					                        <div class="product-list-detail">
+					                            <div class="product-name">#{rating.title}</div>
+					                            <div class="product-description">#{rating.description}</div>
+				                           	</div>
+				                           	    
+				                          	<p:rating readonly="true" value="#{rating.grade}"/>
+					                            
+					                    </div>
+					                </div>
+					            </p:rowExpansion>
+					            
+					        </p:dataTable>
+					        
+				     	</h:form>
+					</div>
+				</div>
+	
+				
+				
+					
+				<p:dialog modal="true" height="500" width="500" widgetVar="rating">
+					<h:form>
+						<p:card class="card-form">
+							<f:facet name="title" >Avaliação</f:facet>
+			
+							<h:panelGrid columns="2">
+		 
+								<p:outputLabel value="Titulo" for="title" />
+								<p:inputText id="title" value="#{ratingBean.rating.title}" required="true" requiredMessage="Erro de validação"/>
+								
+								<p:outputLabel value="Descrição" for="description"/>
+								<p:inputTextarea value="#{ratingBean.rating.description}" id="description" rows="6" cols="30"/>
+								
+								<p:outputLabel value="Nota" for="grade"/>
+								<p:rating id="grade" value="#{ratingBean.rating.grade}"/>
+										
+							</h:panelGrid>
+			
+							<f:facet name="footer">
+								<p:messages id="messages"/>
+								<p:commandButton icon="pi pi-check" value="Cadastrar Avaliação" action="#{ratingBean.rate}">
+									<f:ajax execute="@form" render="form-users"/>
+								</p:commandButton>
+							</f:facet>
+						</p:card>
+					</h:form>
+				</p:dialog>
+			
+			</ui:define>
+		</ui:composition>
+		
+	</h:body>
+</html>

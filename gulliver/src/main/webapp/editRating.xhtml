@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	
+<ui:composition template="_template.xhtml">
+	
+	<ui:define name="content">
+		<h:form>
+			<p:card class="card-form">
+				<f:facet name="title" >Avaliação</f:facet>
+
+				<h:panelGrid columns="2">
+
+					<p:outputLabel value="Titulo" for="title" />
+					<p:inputText id="title" value="#{ratingBean.ratingEdit.title}" required="true" requiredMessage="Erro de validação"/>
+					
+					<p:outputLabel value="Descrição" for="description"/>
+					<p:inputTextarea value="#{ratingBean.ratingEdit.description}" id="description" rows="6" cols="30"/>
+					
+					<p:outputLabel value="Nota" for="grade"/>
+					<p:rating id="grade" value="#{ratingBean.ratingEdit.grade}"/>
+							
+				</h:panelGrid>
+
+				<f:facet name="footer">
+					<p:messages id="messages"/>
+					<p:commandButton icon="pi pi-check" value="Editar Avaliação" action="#{ratingBean.editRating(ratingBean.ratingEdit)}">
+						<f:ajax execute="@form" render="form-users"/>
+					</p:commandButton>
+				</f:facet>
+			</p:card>
+		</h:form>
+	
+	</ui:define>
+
+</ui:composition>
+</html>
