@@ -7,7 +7,10 @@
 		xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
 	<h:outputStylesheet library="css" name="global.css"></h:outputStylesheet>
+	<h:outputStylesheet library="css" name="rentalCompany.css"></h:outputStylesheet>
+	<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true"></script>
 	<title><ui:insert name="title">Gulliver Traveller</ui:insert></title>
+	<link rel="preconnect" href="https://fonts.gstatic.com"></link>
 </h:head>
 <body>
 
@@ -19,10 +22,10 @@
         			<p:menuitem value="Home" outcome="index.xhtml" icon="pi pi-fw pi-home">
             			<f:param name="i" value="0"/>
         			</p:menuitem>
-        			<p:menuitem value="Cadastro" outcome="index.xhtml" icon="pi pi-fw pi-user">
+        			<p:menuitem value="Cadastro" outcome="form-user.xhtml" icon="pi pi-fw pi-user">
             			<f:param name="i" value="1"/>
         			</p:menuitem>
-        			<p:menuitem value="Avaliacao" outcome="index.xhtml" icon="pi pi-fw pi-file">
+        			<p:menuitem value="Avaliações" outcome="list-rating.xhtml" icon="pi pi-fw pi-file">
             			<f:param name="i" value="2"/>
         			</p:menuitem>
     			</p:tabMenu>

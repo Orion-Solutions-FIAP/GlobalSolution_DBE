@@ -104,21 +104,21 @@ public class RentalCompany {
 	}
 
 	public void addRating(Rating rating) {
-		if (this.ratings == null)
-			this.ratings = new ArrayList<Rating>();
-		this.ratings.add(rating);
+		if (this.getRatings() == null)
+			this.setRatings(new ArrayList<Rating>());
+		this.getRatings().add(rating);
 		rating.setRentalCompany(this);
 	}
-
-	public int getRatingsAvg() {
-		int media = 0;
-		for (Rating r : this.ratings) {
-			media += r.getGrade();
-		}
-		media = media/this.ratings.size();
-		return media;
-	}
 	
+	public int getRatingsAvg() {
+        int media = 0;
+        for (Rating r : this.ratings) {
+            media += r.getGrade();
+        }
+        media = media/this.ratings.size();
+        return media;
+    }
+
 	public int getId() {
 		return id;
 	}
@@ -190,7 +190,12 @@ public class RentalCompany {
 	public void setSchedules(List<Schedule> schedules) {
 		this.schedules = schedules;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "RentalCompany [Id=" + id + ", Name=" + name + ", Url Image=" + urlImage + ", Description=" + description
+				+ ", Link=" + link + "]";
+	}
 
 	public List<Rating> getRatings() {
 		return ratings;
@@ -198,11 +203,5 @@ public class RentalCompany {
 
 	public void setRatings(List<Rating> ratings) {
 		this.ratings = ratings;
-	}
-
-	@Override
-	public String toString() {
-		return "RentalCompany [Id=" + id + ", Name=" + name + ", Url Image=" + urlImage + ", Description=" + description
-				+ ", Link=" + link + "]";
 	}
 }
