@@ -32,7 +32,7 @@ public class RentalCompanyBean {
 	
 	public List<Car> getCarsFromRentalCompany() throws EntityNotFoundException{
 		CarDao carDao = new CarDaoImpl(em);
-		List<Car> cars = carDao.findByRentalCompany(this.rentalCompany.getId());
+		List<Car> cars = carDao.findByRentalCompanyId(this.rentalCompany.getId());
 		return cars;
 	}
 	

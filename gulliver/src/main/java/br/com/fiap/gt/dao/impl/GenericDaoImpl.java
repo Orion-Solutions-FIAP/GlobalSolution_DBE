@@ -26,7 +26,7 @@ public abstract class GenericDaoImpl<E, K> implements GenericDao<E, K> {
 	@Override
 	public void create(E entity) {
 		em.getTransaction().begin();
-		em.merge(entity);
+		em.persist(entity);
 		em.getTransaction().commit();
 	}
 
@@ -75,6 +75,9 @@ public abstract class GenericDaoImpl<E, K> implements GenericDao<E, K> {
 
 	@Override
 	public E createOrUpdate(E entity) {
-		return em.merge(entity);
+		em.getTransaction().begin();
+		entity = em.merge(entity);
+		em.getTransaction().commit();
+		return entity;
 	}
 }
