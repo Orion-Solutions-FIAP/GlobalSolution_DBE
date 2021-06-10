@@ -12,30 +12,31 @@
 	</head>
 	
 	<h:body>
-	
 		<ui:composition template="_template.xhtml">
 			<ui:define name="content">
 				<div class="layout">
 					<div class="info">
-	    				<h1 class="text underline">Localiza</h1>
-	    				<h:outputText styleClass="description" value="Localiza Rent a Car, conhecida apenas como Localiza, é uma rede brasileira de lojas especializadas em aluguel de carros
-	    				, atuante nas principais cidades e aeroportos do Brasil e também em diversos países da América Latina, como Argentina, Paraguai, Colômbia, e Equador."/>
-    					<h:link styleClass="link" value="https://www.localiza.com/brasil/pt-br"/>
+						<h:outputText styleClass="text underline" value="#{rentalCompanyBean.rentalCompany.name}"/>
+	    				<h:outputText styleClass="description" value="#{rentalCompanyBean.rentalCompany.description}"/>
+    					<h:link styleClass="link" value="#{rentalCompanyBean.rentalCompany.link}"/>
+    					<p:commandButton styleClass="button ui-button-help" icon="pi pi-heart" value="Avaliar" action="#{ratingBean.rate}" oncomplete="PF('rating').show()">
+							<f:ajax execute="@form" render="form-users"/>
+						</p:commandButton>
 					</div>
-		    		<p:graphicImage url="https://upload.wikimedia.org/wikipedia/pt/c/c8/Logotipo_da_Localiza_em_2014.png" styleClass="p-shadow-2 imageLogo" width="700"/>
+		    		<p:graphicImage url="#{rentalCompanyBean.rentalCompany.urlImage}" styleClass="p-shadow-2 imageLogo" width="700"/>
 					<div class="images">
-				    	<p:gmap styleClass="map" center="-22.92644250633006, -45.463105781713104" zoom="18" type="HYBRID" style="width:650px;height:350px"/>
+				    	<p:gmap styleClass="map" center="#{rentalCompanyBean.rentalCompany.latitude}, #{rentalCompanyBean.rentalCompany.longitude}" zoom="18" type="HYBRID" style="width:650px;height:350px"/>
 					</div>
 				</div>
 				
 				
-				<div>
+				<div class="carSection">
 					<div class="card" id="card-setup-list"> 
 						<h:form id="form-setups">
 							<p:dataTable 
 								var="car"
 								value="#{rentalCompanyBean.carsFromRentalCompany}">
-								<f:facet  name="header">
+								<f:facet id="teste" name="header">
 				                	Lista de carros da locadora
 				            	</f:facet>
 								<p:column headerText="Modelo">
@@ -54,11 +55,55 @@
 						</h:form> 
 					</div>
 				</div>
-
 				
-				<p:commandButton icon="pi pi-check" value="Validar" action="#{ratingBean.rate}" oncomplete="PF('rating').show()">
-					<f:ajax execute="@form" render="form-users"/>
-				</p:commandButton>
+				<div class="listSection">
+					<div class="card">
+					    <h:form>
+					        <p:dataTable var="rating" value="#{ratingBean.rentalRating}">
+					            <f:facet name="header">
+					                Avaliações
+					            </f:facet>
+					            
+					            <p:column style="width:2rem">
+			                		<p:rowToggler/>
+			            		</p:column>
+					
+					            <p:column headerText="Locadora">
+					                <h:outputText value="#{rating.rentalCompany.name}"/>
+					            </p:column>
+					
+					            <p:column headerText="Titulo">
+					                <h:outputText value="#{rating.title}"/>
+					            </p:column>
+					
+					            <p:column styleClass="avaliacao" headerText="Avaliacao">
+					                <p:rating readonly="true" value="#{rating.grade}"/>
+					            </p:column>
+					            
+					             <p:rowExpansion>
+					                <div class="product">
+					                    <div class="product-list-item">
+					                    	<p:graphicImage url="#{rating.rentalCompany.urlImage}" width="100"/>
+					                    	
+					                        <div class="product-list-detail">
+					                            <div class="product-name">#{rating.title}</div>
+					                            <div class="product-description">#{rating.description}</div>
+				                           	</div>
+				                           	    
+				                          	<p:rating readonly="true" value="#{rating.grade}"/>
+					                            
+					                    </div>
+					                </div>
+					            </p:rowExpansion>
+					            
+					        </p:dataTable>
+					        
+				     	</h:form>
+					</div>
+				</div>
+	
+				
+				
 					
 				<p:dialog modal="true" height="500" width="500" widgetVar="rating">
 					<h:form>
@@ -80,7 +125,7 @@
 			
 							<f:facet name="footer">
 								<p:messages id="messages"/>
-								<p:commandButton icon="pi pi-check" value="Cadastrar Avaliação" action="#{ratingBean.rate}" onclick="PF('modal').hide();$('#form').trigger('reset');">
+								<p:commandButton icon="pi pi-check" value="Cadastrar Avaliação" action="#{ratingBean.rate}">
 									<f:ajax execute="@form" render="form-users"/>
 								</p:commandButton>
 							</f:facet>

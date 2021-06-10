@@ -14,4 +14,9 @@ public interface RatingDao extends GenericDao<Rating, RatingPK> {
 	
 	//Buscar avalia��es por usu�rio
 	List<Rating> findByUser(User user);
+	
+	//Buscar avaliacao por locadora
+    List<Rating> findByRentCompany(RentalCompany rentalCompany);
+    
+    
 }

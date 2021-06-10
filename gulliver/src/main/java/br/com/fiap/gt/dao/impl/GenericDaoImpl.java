@@ -27,10 +27,9 @@ public abstract class GenericDaoImpl<E, K> implements GenericDao<E, K> {
 	@Override
 	public void create(E entity) {
 		em.getTransaction().begin();
-		em.persist(entity);
+		em.merge(entity);
 		em.getTransaction().commit();
 		
-		em.close();
 	}
 
 	@Override
@@ -43,12 +42,16 @@ public abstract class GenericDaoImpl<E, K> implements GenericDao<E, K> {
 
 	@Override
 	public void update(E entity) {
+		em.getTransaction().begin();
 		em.merge(entity);
+		em.getTransaction().commit();
 	}
 
 	@Override
 	public void delete(K id) throws EntityNotFoundException {
+		em.getTransaction().begin();
 		em.remove(search(id));
+		em.getTransaction().commit();
 	}
 
 	@Override

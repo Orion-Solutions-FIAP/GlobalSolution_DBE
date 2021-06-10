@@ -17,9 +17,6 @@
 		            <f:facet name="header">
 		                Locadoras
 		            </f:facet>
-		            <p:column style="width:2rem">
-		                <p:rowToggler/>
-		            </p:column>
 		
 		            <p:column headerText="Nome">
 		                <h:outputText value="#{rentalCompany.name}"/>
@@ -33,13 +30,15 @@
 		                <h:outputText value="#{rentalCompany.description}"/>
 		            </p:column>
 		
-		            <p:column headerText="Avaliacao">
-		                <p:rating readonly="true" value="100"/>
-		            </p:column>
+		           	<p:column headerText="Avaliacao">
+                        <p:rating readonly="true" value="#{rentalCompany.ratingsAvg}"/>
+                    </p:column>
 		            
 		            <p:column>
-		                <p:commandButton value="Ver Mais" type="button"></p:commandButton>
-		            </p:column>
+                        <p:commandButton value="Ver Mais" action="#{rentalCompanyBean.details}" >
+                           <f:setPropertyActionListener value="#{rentalCompany}" target="#{rentalCompanyBean.rental}"/>
+                       </p:commandButton>
+                   	</p:column>
 		            
 		        </p:dataTable>
 		    </h:form>

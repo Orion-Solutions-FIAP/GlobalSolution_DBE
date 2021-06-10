@@ -1,5 +1,6 @@
 package br.com.fiap.gt.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,12 +32,12 @@ public class Rating {
 	private int id;
 
 	@Id
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.MERGE )
 	@JoinColumn(name = "id_rental_comp")
 	private RentalCompany rentalCompany;
 
 	@Id
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.MERGE )
 	@JoinColumn(name = "id_user")
 	private User user;
 

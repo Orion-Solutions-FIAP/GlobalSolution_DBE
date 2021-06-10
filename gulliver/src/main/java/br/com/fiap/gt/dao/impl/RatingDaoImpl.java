@@ -27,5 +27,12 @@ public class RatingDaoImpl extends GenericDaoImpl<Rating, RatingPK> implements R
 		return em.createNamedQuery("Rating.FindByUser", Rating.class)
 		.setParameter("u", user).setMaxResults(20).getResultList();
 	}
+	
+	@Override
+    public List<Rating> findByRentCompany(RentalCompany rentalCompany) {
+        return em.createQuery("Select r from Rating r where r.rentalCompany.id = :rentalId", Rating.class)
+                    .setParameter("rentalId", rentalCompany.getId())
+                    .getResultList();
+    }
 
 }

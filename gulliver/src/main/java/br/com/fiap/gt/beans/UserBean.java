@@ -31,6 +31,12 @@ public class UserBean {
 			return "login?faces-redirect=true";
 		}
 	}
+	
+	public String logout() {
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("user");
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("company");
+        return "login?faces-redirect=true";
+    }
 
 	public User getUser() {
 		return user;
