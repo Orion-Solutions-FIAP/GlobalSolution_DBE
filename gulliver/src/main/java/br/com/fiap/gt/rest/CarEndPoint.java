@@ -16,6 +16,7 @@ import javax.ws.rs.core.Response;
 import br.com.fiap.gt.dao.CarDao;
 import br.com.fiap.gt.dao.impl.CarDaoImpl;
 import br.com.fiap.gt.exception.CommitException;
+import br.com.fiap.gt.exception.EntityNotFoundException;
 import br.com.fiap.gt.model.Car;
 import br.com.fiap.gt.singleton.EntityManagerFactorySingleton;
 
@@ -52,11 +53,12 @@ public class CarEndPoint {
 	public Response findById(@PathParam("id") Integer id) {
 		if (id == null)
 			return Response.status(Response.Status.BAD_REQUEST).build();
-
-		Car car = carDao.search(id);
-		if (car == null)
+		try {
+			Car car = carDao.search(id);
+			return Response.status(Response.Status.OK).entity(car).build();
+		} catch (EntityNotFoundException e) {
 			return Response.status(Response.Status.NOT_FOUND).build();
-		return Response.status(Response.Status.OK).entity(car).build();
+		}
 	}
 
 	@PUT
@@ -69,13 +71,12 @@ public class CarEndPoint {
 
 		try {
 			Car carBase = carDao.search(id);
-			if (carBase == null)
-				return Response.status(Response.Status.NOT_FOUND).build();
-
 			car.setRentalCompany(carBase.getRentalCompany());
 			carDao.update(car);
 			carDao.commit();
 			return Response.status(Response.Status.OK).entity(car).build();
+		} catch (EntityNotFoundException e) {
+			return Response.status(Response.Status.NOT_FOUND).build();
 		} catch (CommitException e) {
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
 		}
@@ -103,11 +104,11 @@ public class CarEndPoint {
 			return Response.status(Response.Status.BAD_REQUEST).build();
 
 		try {
-			if (carDao.search(id) == null)
-				return Response.status(Response.Status.NOT_FOUND).build();
 			carDao.delete(id);
 			carDao.commit();
 			return Response.status(Response.Status.OK).build();
+		} catch (EntityNotFoundException e) {
+			return Response.status(Response.Status.NOT_FOUND).build();
 		} catch (CommitException e) {
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
 		}

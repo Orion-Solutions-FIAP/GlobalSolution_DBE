@@ -16,6 +16,7 @@ import javax.ws.rs.core.Response;
 import br.com.fiap.gt.dao.RentalCompanyDao;
 import br.com.fiap.gt.dao.impl.RentalCompanyDaoImpl;
 import br.com.fiap.gt.exception.CommitException;
+import br.com.fiap.gt.exception.EntityNotFoundException;
 import br.com.fiap.gt.model.RentalCompany;
 import br.com.fiap.gt.singleton.EntityManagerFactorySingleton;
 
@@ -41,11 +42,14 @@ public class RentalCompanyEndPoint {
 	public Response findById(@PathParam("id") Integer id) {
 		if (id == null)
 			return Response.status(Response.Status.BAD_REQUEST).build();
-		
-		RentalCompany rentalCompany = rentalCompanyDao.search(id);
-		if (rentalCompany == null)
+
+		try {
+			RentalCompany rentalCompany = rentalCompanyDao.search(id);
+			return Response.status(Response.Status.OK).entity(rentalCompany).build();
+
+		} catch (EntityNotFoundException e) {
 			return Response.status(Response.Status.NOT_FOUND).build();
-		return Response.status(Response.Status.OK).entity(rentalCompany).build();
+		}
 	}
 
 	@PUT
@@ -57,11 +61,12 @@ public class RentalCompanyEndPoint {
 			return Response.status(Response.Status.BAD_REQUEST).build();
 
 		try {
-			if (rentalCompanyDao.search(id) == null)
-				return Response.status(Response.Status.NOT_FOUND).build();
+			rentalCompanyDao.search(id);
 			rentalCompanyDao.update(rentalCompany);
 			rentalCompanyDao.commit();
 			return Response.status(Response.Status.OK).entity(rentalCompany).build();
+		} catch (EntityNotFoundException e) {
+			return Response.status(Response.Status.NOT_FOUND).build();
 		} catch (CommitException e) {
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
 		}
@@ -89,11 +94,11 @@ public class RentalCompanyEndPoint {
 			return Response.status(Response.Status.BAD_REQUEST).build();
 
 		try {
-			if (rentalCompanyDao.search(id) == null)
-				return Response.status(Response.Status.NOT_FOUND).build();
 			rentalCompanyDao.delete(id);
 			rentalCompanyDao.commit();
 			return Response.status(Response.Status.OK).build();
+		} catch (EntityNotFoundException e) {
+			return Response.status(Response.Status.BAD_REQUEST).build();
 		} catch (CommitException e) {
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
 		}

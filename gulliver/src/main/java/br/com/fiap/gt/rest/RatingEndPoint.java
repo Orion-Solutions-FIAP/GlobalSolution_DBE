@@ -20,10 +20,9 @@ import br.com.fiap.gt.dao.impl.RatingDaoImpl;
 import br.com.fiap.gt.dao.impl.RentalCompanyDaoImpl;
 import br.com.fiap.gt.dao.impl.UserDaoImpl;
 import br.com.fiap.gt.exception.CommitException;
+import br.com.fiap.gt.exception.EntityNotFoundException;
 import br.com.fiap.gt.model.Rating;
 import br.com.fiap.gt.model.RatingPK;
-import br.com.fiap.gt.model.RentalCompany;
-import br.com.fiap.gt.model.User;
 import br.com.fiap.gt.singleton.EntityManagerFactorySingleton;
 
 @Path("/rating")
@@ -66,10 +65,12 @@ public class RatingEndPoint {
 		if (id == null || rentalCompanyId == null || userId == null)
 			return Response.status(Response.Status.BAD_REQUEST).build();
 
-		Rating rating = ratingDao.search(new RatingPK(id, rentalCompanyId, userId));
-		if (rating == null)
+		try {
+			Rating rating = ratingDao.search(new RatingPK(id, rentalCompanyId, userId));
+			return Response.status(Response.Status.OK).entity(rating).build();
+		} catch (EntityNotFoundException e) {
 			return Response.status(Response.Status.NOT_FOUND).build();
-		return Response.status(Response.Status.OK).entity(rating).build();
+		}
 	}
 
 	@PUT
@@ -83,14 +84,13 @@ public class RatingEndPoint {
 		try {
 			Rating ratingBase = ratingDao
 					.search(new RatingPK(id, rating.getRentalCompany().getId(), rating.getUser().getId()));
-			if (ratingBase == null)
-				return Response.status(Response.Status.NOT_FOUND).build();
-
 			rating.setRentalCompany(ratingBase.getRentalCompany());
 			rating.setUser(ratingBase.getUser());
 			ratingDao.update(rating);
 			ratingDao.commit();
 			return Response.status(Response.Status.OK).entity(rating).build();
+		} catch (EntityNotFoundException e) {
+			return Response.status(Response.Status.NOT_FOUND).build();
 		} catch (CommitException e) {
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
 		}
@@ -102,16 +102,14 @@ public class RatingEndPoint {
 		if (rating == null || rating.getRentalCompany() == null || rating.getUser() == null)
 			return Response.status(Response.Status.BAD_REQUEST).build();
 
-		RentalCompany rentalCompany = rentalCompanyDao.search(rating.getRentalCompany().getId());
-		User user = userDao.search(rating.getUser().getId());
-
-		if (rentalCompany == null || user == null)
-			return Response.status(Response.Status.BAD_REQUEST).build();
-
 		try {
+			rentalCompanyDao.search(rating.getRentalCompany().getId());
+			userDao.search(rating.getUser().getId());
 			rating = ratingDao.createOrUpdate(rating);
 			ratingDao.commit();
 			return Response.status(Response.Status.CREATED).entity(rating).build();
+		} catch (EntityNotFoundException e1) {
+			return Response.status(Response.Status.NOT_FOUND).build();
 		} catch (CommitException e) {
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
 		}
@@ -127,11 +125,11 @@ public class RatingEndPoint {
 
 		RatingPK ratingPk = new RatingPK(id, rentalCompanyId, userId);
 		try {
-			if (ratingDao.search(ratingPk) == null)
-				return Response.status(Response.Status.NOT_FOUND).build();
 			ratingDao.delete(ratingPk);
 			ratingDao.commit();
 			return Response.status(Response.Status.OK).build();
+		} catch (EntityNotFoundException e) {
+			return Response.status(Response.Status.NOT_FOUND).build();
 		} catch (CommitException e) {
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
 		}

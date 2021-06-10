@@ -16,6 +16,7 @@ import javax.ws.rs.core.Response;
 import br.com.fiap.gt.dao.UserDao;
 import br.com.fiap.gt.dao.impl.UserDaoImpl;
 import br.com.fiap.gt.exception.CommitException;
+import br.com.fiap.gt.exception.EntityNotFoundException;
 import br.com.fiap.gt.model.User;
 import br.com.fiap.gt.singleton.EntityManagerFactorySingleton;
 
@@ -42,10 +43,14 @@ public class UserEndPoint {
 		if (id == null)
 			return Response.status(Response.Status.BAD_REQUEST).build();
 
-		User user = userDao.search(id);
-		if (user == null)
+		try {
+			User user = userDao.search(id);
+			return Response.status(Response.Status.OK).entity(user).build();
+
+		} catch (EntityNotFoundException e) {
 			return Response.status(Response.Status.NOT_FOUND).build();
-		return Response.status(Response.Status.OK).entity(user).build();
+
+		}
 	}
 
 	@PUT
@@ -57,11 +62,12 @@ public class UserEndPoint {
 			return Response.status(Response.Status.BAD_REQUEST).build();
 
 		try {
-			if (userDao.search(id) == null)
-				return Response.status(Response.Status.NOT_FOUND).build();
+			userDao.search(id);
 			userDao.update(user);
 			userDao.commit();
 			return Response.status(Response.Status.OK).entity(user).build();
+		} catch (EntityNotFoundException e) {
+			return Response.status(Response.Status.NOT_FOUND).build();
 		} catch (CommitException e) {
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
 		}
@@ -87,13 +93,12 @@ public class UserEndPoint {
 	public Response delete(@PathParam("id") Integer id) {
 		if (id == null)
 			return Response.status(Response.Status.BAD_REQUEST).build();
-
 		try {
-			if (userDao.search(id) == null)
-				return Response.status(Response.Status.NOT_FOUND).build();
 			userDao.delete(id);
 			userDao.commit();
 			return Response.status(Response.Status.OK).build();
+		} catch (EntityNotFoundException e) {
+			return Response.status(Response.Status.NOT_FOUND).build();
 		} catch (CommitException e) {
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
 		}
